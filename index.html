@@ -266,6 +266,18 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .cta-item .cta-v a { color: var(--white); text-decoration: none; transition: color 0.3s; }
 .cta-item .cta-v a:hover { color: var(--blue); }
 
+/* EXPERIENCE TABLE INTERACTIONS */
+.exp-row { display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer; position:relative; transition:background 0.3s, padding-left 0.3s; }
+.exp-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--blue); transform:scaleY(0); transition:transform 0.3s; }
+.exp-row:hover { background:rgba(42,68,232,0.03); padding-left:clamp(0.8rem,1.04vw,1.5rem); }
+.exp-row:hover::before { transform:scaleY(1); }
+.exp-row:hover .exp-num { transform:scale(1.15); }
+.exp-num { transition:transform 0.3s; font-family:var(--serif); font-style:italic; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1; }
+.exp-detail { max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(0.25,1,0.5,1), padding 0.5s; padding:0; border-bottom:1px solid rgba(0,0,0,0.06); }
+.exp-detail.open { max-height:200px; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); }
+.exp-detail .tl-tag { opacity:0; transform:translateY(10px); transition:all 0.3s; }
+.exp-detail.open .tl-tag { opacity:1; transform:translateY(0); }    
+    
 /* FOOTER */
 footer { padding: clamp(1.2rem, 1.74vw, 2.5rem) var(--px); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); }
 footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.1em; }
@@ -413,7 +425,6 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <div class="bg-num">02</div>
   <div class="lbl">Experience & Projects</div>
 
-  <!-- 헤더 -->
   <div style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding-bottom:clamp(0.8rem,1.04vw,1.5rem); border-bottom:2px solid var(--blue); margin-bottom:clamp(0.5rem,0.69vw,1rem);">
     <div style="font-family:var(--mono); font-size:var(--fx); letter-spacing:0.15em; color:var(--blue2); text-transform:uppercase;">Period</div>
     <div style="font-family:var(--mono); font-size:var(--fx); letter-spacing:0.15em; color:var(--blue2); text-transform:uppercase;">Company</div>
@@ -422,21 +433,21 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   </div>
 
   <!-- KTR -->
-  <div class="rv" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer;" onclick="this.querySelector('.exp-detail').style.display=this.querySelector('.exp-detail').style.display==='none'?'block':'none'">
+  <div class="exp-row rv" data-target="ktr-detail">
     <div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2023.05</div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 재직중</div>
     </div>
     <div>
-      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600; color:var(--white);">KTR 한국화학융합시험연구원</div>
+      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">KTR 한국화학융합시험연구원</div>
       <div style="font-family:var(--kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">경영기획본부 동반성장팀</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">'2023 KTR TOP 12' 수상 · TF 정식 조직 승격</div>
     </div>
     <div style="font-family:var(--kr); font-size:var(--fx); color:var(--white2);">공간디자인 · 시공감리<br>그래픽디자인 · 브랜딩</div>
-    <div style="font-family:var(--serif); font-style:italic; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1;">15<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
+    <div class="exp-num" data-count="15">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
-  <div class="exp-detail" style="display:none; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); border-bottom:1px solid rgba(0,0,0,0.06);">
-    <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem); padding-left:calc(1fr + clamp(1rem,1.39vw,2rem));">
+  <div class="exp-detail" id="ktr-detail">
+    <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
       <span class="tl-tag">심층상담소 123py</span>
       <span class="tl-tag">탄소중립본부 228py</span>
       <span class="tl-tag">글로벌본부 160py</span>
@@ -456,20 +467,20 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   </div>
 
   <!-- 빨간풍선 -->
-  <div class="rv rv-d1" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer;" onclick="this.querySelector('.exp-detail').style.display=this.querySelector('.exp-detail').style.display==='none'?'block':'none'">
+  <div class="exp-row rv rv-d1" data-target="drama-detail">
     <div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2022.07</div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 2023.02</div>
     </div>
     <div>
-      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600; color:var(--white);">리한컴퍼니 (TV CHOSUN '빨간풍선')</div>
+      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">리한컴퍼니 (TV CHOSUN '빨간풍선')</div>
       <div style="font-family:var(--kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">미술팀 · 팀장</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">최고 시청률 11.6% · Netflix TOP 10</div>
     </div>
     <div style="font-family:var(--kr); font-size:var(--fx); color:var(--white2);">세트디자인 · 시공감리<br>아트디렉팅</div>
-    <div style="font-family:var(--serif); font-style:italic; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1;">4<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
+    <div class="exp-num" data-count="4">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
-  <div class="exp-detail" style="display:none; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); border-bottom:1px solid rgba(0,0,0,0.06);">
+  <div class="exp-detail" id="drama-detail">
     <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
       <span class="tl-tag">22개 세트 설계 1,000py</span>
       <span class="tl-tag">프리프로덕션 · 무드보드</span>
@@ -479,20 +490,20 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   </div>
 
   <!-- 해피에듀테크 -->
-  <div class="rv rv-d2" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer;" onclick="this.querySelector('.exp-detail').style.display=this.querySelector('.exp-detail').style.display==='none'?'block':'none'">
+  <div class="exp-row rv rv-d2" data-target="edu-detail">
     <div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2020.10</div>
       <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 2021.10</div>
     </div>
     <div>
-      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600; color:var(--white);">㈜해피에듀테크</div>
+      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">㈜해피에듀테크</div>
       <div style="font-family:var(--kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">디자인팀 · 선임연구원</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">AppStore · Google Play 런칭</div>
     </div>
     <div style="font-family:var(--kr); font-size:var(--fx); color:var(--white2);">UI디자인 · 브랜딩<br>디자인 가이드라인</div>
-    <div style="font-family:var(--serif); font-style:italic; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1;">2<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
+    <div class="exp-num" data-count="2">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
-  <div class="exp-detail" style="display:none; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); border-bottom:1px solid rgba(0,0,0,0.06);">
+  <div class="exp-detail" id="edu-detail">
     <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
       <span class="tl-tag">Math TWO 앱 UI</span>
       <span class="tl-tag">스타트업포럼 부스</span>
@@ -503,25 +514,21 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <div style="margin-top:clamp(2rem,2.78vw,4rem);">
     <div style="font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.2rem,1.11vw,1.6rem); margin-bottom:clamp(1rem,1.39vw,2rem); padding-bottom:clamp(0.5rem,0.69vw,1rem); border-bottom:1px solid rgba(42,68,232,0.25); display:inline-block;">Education</div>
     <div class="rv" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(0.8rem,1.04vw,1.5rem) 0; border-bottom:1px solid rgba(0,0,0,0.06);">
-      <div>
-        <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2012 — 2019</div>
-      </div>
-      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600; color:var(--white);">홍익대학교(세종)</div>
+      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2012 — 2019</div>
+      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">홍익대학교/div>
       <div style="font-family:var(--kr); font-size:var(--fx); color:var(--white2);">디자인영상학부 졸업</div>
       <div></div>
     </div>
     <div class="rv rv-d1" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(0.8rem,1.04vw,1.5rem) 0;">
-      <div>
-        <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2008 — 2011</div>
-      </div>
-      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600; color:var(--white);">대구정화여자고등학교</div>
+      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2008 — 2011</div>
+      <div style="font-family:var(--kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">대구정화여자고등학교</div>
       <div style="font-family:var(--kr); font-size:var(--fx); color:var(--white2);">졸업</div>
       <div></div>
     </div>
   </div>
 </section>
 
-<!-- Works -->
+  <!-- Works -->
 <section class="sec pad" id="works">
   <div class="bg-num">03</div>
   <div class="works-header rv">
@@ -826,7 +833,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="cta-item">
         <div class="cta-l">Education</div>
-        <div class="cta-v">홍익대학교(세종) 디자인영상학부</div>
+        <div class="cta-v">홍익대학교 디자인영상학부</div>
       </div>
       <div class="cta-item">
         <div class="cta-l">Location</div>
@@ -959,6 +966,43 @@ const skillObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.exp-col').forEach(col => {
   if (col.querySelector('.sk-list')) skillObs.observe(col);
 });
+  // Experience row click → toggle detail
+document.querySelectorAll('.exp-row').forEach(row => {
+  row.addEventListener('click', () => {
+    const targetId = row.getAttribute('data-target');
+    const detail = document.getElementById(targetId);
+    if (detail) {
+      detail.classList.toggle('open');
+      // stagger tags
+      detail.querySelectorAll('.tl-tag').forEach((tag, i) => {
+        tag.style.transitionDelay = detail.classList.contains('open') ? (i * 0.05) + 's' : '0s';
+      });
+    }
+  });
+});
+
+// Count-up animation
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.getAttribute('data-count'));
+      const suffix = el.querySelector('span').outerHTML;
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 20));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        el.innerHTML = current + suffix;
+      }, 50);
+      countObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.exp-num').forEach(el => countObs.observe(el));
 </script>
 </body>
 </html>
