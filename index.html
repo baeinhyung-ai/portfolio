@@ -77,15 +77,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 /* HERO */
 .hero-intro-wrap { height: 350vh; position: relative; }
 .hero-intro { height: 100vh; min-height: 600px; position: sticky; top: 0; background: #0a0a0f; overflow: hidden; display: flex; flex-direction: column; }
-.hero-intro-top { padding: 0 var(--px); padding-top: clamp(1rem, 1.39vw, 2rem); position: relative; z-index: 2; }
+.hero-intro-top { padding: 0 var(--px); padding-top: clamp(1rem, 1.39vw, 2rem); }
 .hero-mega-title { font-family: var(--sans); font-weight: 700; font-size: var(--fH); color: #fff; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; margin-bottom: clamp(0.5rem, 0.69vw, 1rem); white-space: nowrap; }
-.hero-intro-nav { display: flex; justify-content: space-between; align-items: center; padding: clamp(0.5rem, 0.69vw, 1rem) var(--px); border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 2; }
+.hero-intro-nav { display: flex; justify-content: space-between; align-items: center; padding: clamp(0.5rem, 0.69vw, 1rem) var(--px); border-bottom: 1px solid rgba(255,255,255,0.06); }
 .hero-intro-nav-left { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
 .hero-intro-nav-right { display: flex; gap: clamp(1rem, 1.74vw, 2.5rem); }
 .hero-intro-nav-right span { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.1em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
-.hero-vid-box { flex: 1; display: flex; align-items: center; justify-content: center; position: static; background: transparent; }
-.hero-vid-inner { width: 35vw; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; }
-.hero-vid-inner iframe { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); border: none; pointer-events: none; }
+.hero-vid-box { flex: 1; display: flex; align-items: stretch; justify-content: center; position: relative; }
+.hero-vid-inner { width: 35%; aspect-ratio: 16/9; background: #0a0a0f; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+.hero-vid-inner iframe { position: absolute; top: 50%; left: 50%; width: 120vw; height: 120vh; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; border: none; pointer-events: none; }
 .hero-intro-bottom { padding: clamp(1rem, 1.39vw, 2rem) var(--px) clamp(1.5rem, 2.08vw, 3rem); text-align: center; }
 .hero-intro-powered { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.2em; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: clamp(0.6rem, 0.83vw, 1.2rem); }
 .hero-intro-statement { font-family: var(--sans); font-weight: 500; font-size: var(--fI); color: #fff; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.5; }
@@ -890,11 +890,9 @@ window.addEventListener('scroll', () => {
   const top = heroIntroEl?.querySelector('.hero-intro-top');
   const nav = heroIntroEl?.querySelector('.hero-intro-nav');
 
-if (progress < 0.35) {
+  if (progress < 0.35) {
     const p = progress / 0.35;
-    // % 대신 vw 단위 사용, height도 화면 끝까지 꽉 차도록 수식 적용
-    vidInner.style.width = (35 + p * 65) + 'vw';
-    vidInner.style.height = `calc((35vw * 9 / 16) * (1 - p) + 100vh * p)`;
+    vidInner.style.width = (35 + p * 65) + '%';
     vidInner.style.borderRadius = ((1 - p) * 4) + 'px';
     vidInner.style.borderColor = `rgba(255,255,255,${0.06 * (1 - p)})`;
     const fade = Math.max(0, 1 - p * 2.5);
@@ -905,10 +903,8 @@ if (progress < 0.35) {
     letters.forEach(l => l.classList.remove('lit'));
   } else if (progress < 0.5) {
     const p = (progress - 0.35) / 0.15;
-    vidInner.style.width = '100vw';
-    vidInner.style.height = '100vh'; // 화면 세로 완벽히 덮기
-    vidInner.style.borderRadius = '0px';
-    vidInner.style.border = 'none'; // 테두리 없애기
+    vidInner.style.width = '100%';
+    vidInner.style.borderRadius = '0';
     if (top) top.style.opacity = 0;
     if (nav) nav.style.opacity = 0;
     if (heroBottom) heroBottom.style.opacity = 0;
@@ -916,8 +912,7 @@ if (progress < 0.35) {
     letters.forEach(l => l.classList.remove('lit'));
   } else {
     const p = (progress - 0.5) / 0.5;
-    vidInner.style.width = '100vw';
-    vidInner.style.height = '100vh'; // 화면 세로 완벽히 덮기
+    vidInner.style.width = '100%';
     if (top) top.style.opacity = 0;
     if (nav) nav.style.opacity = 0;
     if (heroBottom) heroBottom.style.opacity = 0;
@@ -928,6 +923,7 @@ if (progress < 0.35) {
       else l.classList.remove('lit');
     });
   }
+});
 
 // Skill bars animation
 const skillObs = new IntersectionObserver(entries => {
