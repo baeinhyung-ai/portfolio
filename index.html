@@ -269,7 +269,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 /* EXPERIENCE TABLE INTERACTIONS */
 .exp-row { display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer; position:relative; transition:background 0.3s, padding-left 0.3s; }
 .exp-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--blue); transform:scaleY(0); transition:transform 0.3s; }
-.exp-row:hover { background:rgba(42,68,232,0.03); padding-left:clamp(0.8rem,1.04vw,1.5rem); }
+.exp-row:hover { background:rgba(255,255,255,0.7); padding-left:clamp(0.8rem,1.04vw,1.5rem); box-shadow:0 4px 20px rgba(0,0,0,0.05); }
 .exp-row:hover::before { transform:scaleY(1); }
 .exp-row:hover .exp-num { transform:scale(1.15); }
 .exp-num { transition:transform 0.3s; font-family:var(--serif); font-style:italic; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1; }
