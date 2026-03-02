@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAE INHYUNG — Space Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@200;300;400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f6f5f1;
+  --bg2: #ecebe6;
+  --white: #1a1a1f;
+  --white2: rgba(26,26,31,0.70);
+  --dim: #6e6e7a;
+  --blue: #2a44e8;
+  --blue2: #3355dd;
+  --blue-g: rgba(42,68,232,0.05);
+  --serif: 'Instrument Serif', serif;
+  --sans: 'DM Sans', sans-serif;
+  --kr: 'Noto Sans KR', sans-serif;
+  --mono: 'Space Mono', monospace;
+
+  /* === VW SCALE SYSTEM (기준: 1440px) ===
+     clamp(최소, vw비율, 최대) → 어떤 모니터에서든 동일 비율 */
+  --px: clamp(1.5rem, 2.78vw, 4rem);
+  --py: clamp(5rem, 8.33vw, 12rem);
+  --py-s: clamp(3.5rem, 5.56vw, 8rem);
+  --g-xl: clamp(4rem, 5.56vw, 8rem);
+  --g-lg: clamp(2rem, 4.17vw, 6rem);
+  --g-md: clamp(1.5rem, 2.08vw, 3rem);
+  --g-sm: clamp(0.8rem, 1.04vw, 1.5rem);
+  --fH: clamp(3.5rem, 7.64vw, 11rem);
+  --f1: clamp(2.5rem, 4.51vw, 6.5rem);
+  --f2: clamp(2rem, 2.64vw, 3.8rem);
+  --f3: clamp(1.6rem, 2.22vw, 3.2rem);
+  --fb: clamp(0.85rem, 0.69vw, 1rem);
+  --fs: clamp(0.72rem, 0.57vw, 0.82rem);
+  --fx: clamp(0.6rem, 0.47vw, 0.68rem);
+  --fxx: clamp(0.5rem, 0.42vw, 0.6rem);
+  --fm: clamp(0.65rem, 0.56vw, 0.8rem);
+  --fst: clamp(2.5rem, 2.43vw, 3.5rem);
+  --fL: clamp(2.5rem, 3.47vw, 5rem);
+  --fD: clamp(2.5rem, 4.86vw, 7rem);
+  --fC: clamp(3rem, 6.25vw, 9rem);
+  --fB: clamp(2.2rem, 3.47vw, 5rem);
+  --fN: clamp(6rem, 9.72vw, 14rem);
+  --fI: clamp(0.9rem, 1.11vw, 1.6rem);
+  --fM: clamp(1.8rem, 2.78vw, 4rem);
+  --fP: clamp(1.3rem, 1.25vw, 1.8rem);
+  --fDP: clamp(1rem, 0.83vw, 1.2rem);
+  --fDs: clamp(2.2rem, 2.43vw, 3.5rem);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--blue); color: #fff; }
+
+/* LOADER */
+.loader { position: fixed; inset: 0; background: var(--bg); z-index: 9990; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--g-md); }
+.loader.out { animation: loaderExit 1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+@keyframes loaderExit { to { clip-path: inset(0 0 100% 0); } }
+.loader .l-pct { font-family: var(--mono); font-size: var(--fs); letter-spacing: 0.3em; color: var(--dim); }
+.loader .l-bar { width: clamp(100px, 11.11vw, 160px); height: 1px; background: rgba(0,0,0,0.06); overflow: hidden; }
+.loader .l-bar span { display: block; height: 100%; background: var(--blue); width: 0; animation: lLoad 2s ease-in-out forwards; }
+@keyframes lLoad { to { width: 100%; } }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw, 2rem) var(--px); display: flex; justify-content: space-between; align-items: center; z-index: 500; background: linear-gradient(to bottom, rgba(246,245,241,0.95) 0%, rgba(246,245,241,0.7) 60%, rgba(246,245,241,0) 100%); opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+.n-logo { font-family: var(--sans); font-weight: 700; font-size: var(--fb); letter-spacing: 0.12em; opacity: 0; transition: opacity 0.3s; }
+.n-links { display: flex; gap: clamp(1.2rem, 1.74vw, 2.5rem); list-style: none; }
+.n-links a { color: var(--white); text-decoration: none; font-size: var(--fs); font-weight: 700; letter-spacing: 0.04em; position: relative; padding-bottom: 4px; transition: color 0.3s; }
+.n-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--white); transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.n-links a:hover::after { width: 100%; }
+
+/* HERO */
+.hero-intro-wrap { height: 350vh; position: relative; }
+.hero-intro { height: 100vh; min-height: 600px; position: sticky; top: 0; background: #0a0a0f; overflow: hidden; display: flex; flex-direction: column; }
+.hero-intro-top { padding: 0 var(--px); padding-top: clamp(1rem, 1.39vw, 2rem); }
+.hero-mega-title { font-family: var(--sans); font-weight: 700; font-size: var(--fH); color: #fff; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.92; margin-bottom: clamp(0.5rem, 0.69vw, 1rem); white-space: nowrap; }
+.hero-intro-nav { display: flex; justify-content: space-between; align-items: center; padding: clamp(0.5rem, 0.69vw, 1rem) var(--px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.hero-intro-nav-left { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+.hero-intro-nav-right { display: flex; gap: clamp(1rem, 1.74vw, 2.5rem); }
+.hero-intro-nav-right span { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.1em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+.hero-vid-box { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+.hero-vid-inner { width: 35%; aspect-ratio: 16/9; background: linear-gradient(150deg, #1a1a2e, #16213e, #0f3460); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.hero-vid-inner .vid-placeholder { font-family: var(--mono); font-size: var(--fxx); color: rgba(255,255,255,0.12); letter-spacing: 0.2em; text-transform: uppercase; text-align: center; line-height: 2; }
+.hero-intro-bottom { padding: clamp(1rem, 1.39vw, 2rem) var(--px) clamp(1.5rem, 2.08vw, 3rem); text-align: center; }
+.hero-intro-powered { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.2em; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: clamp(0.6rem, 0.83vw, 1.2rem); }
+.hero-intro-statement { font-family: var(--sans); font-weight: 500; font-size: var(--fI); color: #fff; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.5; }
+.hero-letter-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 5; padding: clamp(3rem, 4.17vw, 6rem) var(--px); max-width: 62.5vw; opacity: 0; }
+.hero-letter-meta { display: flex; gap: clamp(1rem, 2.08vw, 3rem); padding-bottom: clamp(0.8rem, 1.04vw, 1.5rem); border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: clamp(1.5rem, 2.08vw, 3rem); flex-wrap: wrap; }
+.hero-letter-meta span { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.15em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+.hero-letter-title { font-family: var(--sans); font-weight: 500; font-size: var(--fL); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: clamp(1.2rem, 1.74vw, 2.5rem); }
+.hero-letter-title .letter { display: inline-block; color: rgba(255,255,255,0.1); transition: color 0.4s ease; }
+.hero-letter-title .letter.lit { color: #fff; }
+.hero-letter-title .letter-space { display: inline-block; width: 0.3em; }
+.hero-letter-title .letter-break { display: block; height: 0; }
+.hero-letter-sub { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 31.25vw; }
+
+/* COMMON */
+.sec { position: relative; }
+.pad { padding: var(--py) var(--px); }
+.pad-sm { padding: var(--py-s) var(--px); }
+.lbl { font-family: var(--mono); font-size: var(--fm); letter-spacing: 0.45em; text-transform: uppercase; color: var(--blue2); margin-bottom: clamp(0.8rem, 1.04vw, 1.5rem); }
+.bg-num { font-family: var(--serif); font-size: var(--fN); color: rgba(0,0,0,0.03); position: absolute; top: clamp(3rem, 4.17vw, 6rem); right: var(--px); line-height: 1; pointer-events: none; font-style: italic; }
+.rv { opacity: 0; transform: translateY(clamp(30px, 4.17vw, 60px)); transition: all 1s cubic-bezier(0.25,1,0.5,1); }
+.rv.v { opacity: 1; transform: translateY(0); }
+.rv-d1 { transition-delay: 0.15s; }
+.rv-d2 { transition-delay: 0.3s; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-xl); align-items: start; }
+.about-heading { font-family: var(--serif); font-weight: 400; font-size: var(--f2); line-height: 1.2; margin-bottom: clamp(1.2rem, 1.74vw, 2.5rem); }
+.about-heading em { font-style: italic; color: var(--blue2); }
+.about-body { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2.1; color: var(--white2); }
+.about-img-wrap { position: relative; margin-top: clamp(1rem, 1.39vw, 2rem); }
+.about-ph { width: 100%; aspect-ratio: 3/4; background: linear-gradient(155deg, #e8e7e2, #dddcd6); border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: var(--fs); color: rgba(0,0,0,0.08); letter-spacing: 0.2em; text-transform: uppercase; position: relative; overflow: hidden; }
+.about-ph::before { content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background: conic-gradient(from 0deg, transparent, var(--blue-g), transparent, transparent); animation: spinGlow 15s linear infinite; }
+@keyframes spinGlow { to { transform: rotate(360deg); } }
+.about-frame { position: absolute; inset: clamp(-8px, -1.11vw, -16px); border: 1px solid rgba(42,68,232,0.06); pointer-events: none; }
+.about-stats { display: flex; gap: clamp(1.5rem, 2.78vw, 4rem); margin-top: clamp(2.5rem, 3.47vw, 5rem); padding-top: clamp(1.5rem, 2.08vw, 3rem); border-top: 1px solid rgba(0,0,0,0.06); flex-wrap: wrap; }
+.st .st-n { font-family: var(--serif); font-style: italic; font-size: var(--fst); color: var(--blue); line-height: 1; }
+.st .st-d { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.12em; margin-top: clamp(0.3rem, 0.42vw, 0.6rem); }
+
+/* MARQUEE */
+.mq { padding: clamp(2rem, 2.78vw, 4rem) 0; overflow: hidden; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
+.mq-track { display: flex; width: max-content; animation: mqScroll 35s linear infinite; }
+@keyframes mqScroll { to { transform: translateX(-50%); } }
+.mq-track span { font-family: var(--serif); font-size: var(--fM); white-space: nowrap; padding: 0 clamp(0.6rem, 1.04vw, 1.5rem); color: rgba(0,0,0,0.05); font-weight: 400; }
+.mq-track span.on { color: var(--white); font-style: italic; }
+.mq-track span.bl { color: var(--blue2); }
+.mq-track .dot { font-size: 0.6em; color: var(--blue); align-self: center; padding: 0 clamp(0.3rem, 0.56vw, 0.8rem); }
+
+/* PROJECTS */
+.works-header { margin-bottom: clamp(4rem, 6.94vw, 10rem); }
+.works-title { font-family: var(--serif); font-weight: 400; font-size: var(--f1); line-height: 1; letter-spacing: -0.02em; }
+.works-title em { font-style: italic; color: var(--blue2); }
+.works-sub { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.2em; margin-top: clamp(0.8rem, 1.04vw, 1.5rem); }
+.pj { margin-bottom: clamp(6rem, 11.11vw, 16rem); position: relative; opacity: 0; transform: translateY(clamp(40px, 5.56vw, 80px)); transition: all 1.1s cubic-bezier(0.25,1,0.5,1); }
+.pj.v { opacity: 1; transform: translateY(0); }
+.pj-img { width: 100%; aspect-ratio: 16/9; background: linear-gradient(150deg, #eae9e4, #e0dfd9, #eae9e4); border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: border-color 0.5s; }
+.pj-img::after { content: attr(data-label); font-family: var(--serif); font-size: clamp(0.88rem, 0.83vw, 1.2rem); font-style: italic; color: rgba(0,0,0,0.06); letter-spacing: 0.1em; text-align: center; padding: 0 var(--g-md); }
+.pj-img .tag { position: absolute; top: clamp(0.8rem, 1.04vw, 1.5rem); left: clamp(0.8rem, 1.04vw, 1.5rem); font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.2em; text-transform: uppercase; background: var(--blue); color: #fff; padding: clamp(0.2rem, 0.24vw, 0.35rem) clamp(0.4rem, 0.52vw, 0.75rem); }
+.pj-img:hover { border-color: rgba(51,85,255,0.15); }
+.pj-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 2.78vw, 4rem); margin-top: clamp(1.5rem, 2.08vw, 3rem); align-items: start; }
+.pj-body .pj-cat { font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.35em; text-transform: uppercase; color: var(--blue2); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.pj-body h3 { font-family: var(--serif); font-weight: 400; font-size: var(--f3); line-height: 1.15; letter-spacing: -0.01em; }
+.pj-body h3 em { font-style: italic; }
+.pj-body .pj-meta { display: flex; flex-wrap: wrap; gap: clamp(0.8rem, 1.04vw, 1.5rem); margin-top: clamp(0.8rem, 1.04vw, 1.5rem); }
+.pj-body .pj-meta span { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: clamp(0.25rem, 0.35vw, 0.5rem); }
+.pj-body .pj-meta span::before { content: ''; width: clamp(3px, 0.28vw, 4px); height: clamp(3px, 0.28vw, 4px); border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+.pj-body .pj-desc { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2; color: var(--white2); margin-bottom: clamp(1rem, 1.39vw, 2rem); }
+.pj-body .pj-link { display: inline-flex; align-items: center; gap: clamp(0.4rem, 0.56vw, 0.8rem); text-decoration: none; color: var(--white); font-size: var(--fs); letter-spacing: 0.08em; transition: color 0.3s; }
+.pj-body .pj-link:hover { color: var(--blue); }
+.pj-body .pj-link .arr { width: clamp(20px, 2.22vw, 32px); height: 1px; background: currentColor; position: relative; transition: width 0.4s; }
+.pj-body .pj-link:hover .arr { width: clamp(32px, 3.61vw, 52px); }
+.pj-body .pj-link .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
+.pj-thumbs { display: flex; gap: clamp(0.5rem, 0.69vw, 1rem); margin-top: clamp(1.5rem, 2.08vw, 3rem); overflow-x: auto; scrollbar-width: none; }
+.pj-thumbs::-webkit-scrollbar { display: none; }
+.pj-thumbs .th { flex-shrink: 0; width: clamp(140px, 15.28vw, 220px); height: clamp(90px, 9.72vw, 140px); background: #e8e7e2; border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: var(--fx); color: rgba(0,0,0,0.08); letter-spacing: 0.15em; text-transform: uppercase; transition: border-color 0.4s; }
+.pj-thumbs .th:hover { border-color: rgba(42,68,232,0.25); }
+
+/* DRAMA */
+.drama-feature { background: var(--white); color: var(--bg); padding: 0; overflow: hidden; }
+.drama-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: var(--py) var(--px); position: relative; }
+.drama-hero .lbl { color: var(--blue); }
+.drama-hero-title { font-family: var(--serif); font-weight: 400; font-size: var(--fD); line-height: 1; letter-spacing: -0.03em; margin-bottom: clamp(1rem, 1.39vw, 2rem); }
+.drama-hero-title em { font-style: italic; color: var(--blue); }
+.drama-meta-row { display: flex; flex-wrap: wrap; gap: clamp(1rem, 1.39vw, 2rem); margin-bottom: clamp(1.5rem, 2.08vw, 3rem); }
+.drama-meta-item { display: flex; flex-direction: column; gap: clamp(0.15rem, 0.21vw, 0.3rem); }
+.drama-meta-item .dm-label { font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim); }
+.drama-meta-item .dm-val { font-size: var(--fb); font-weight: 400; }
+.drama-desc-wide { max-width: 48.61vw; font-family: var(--kr); font-size: var(--fb); font-weight: 300; line-height: 2; color: rgba(236,235,230,0.55); }
+.drama-badge { position: absolute; top: var(--px); right: var(--px); background: var(--blue); color: #fff; font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.15em; text-transform: uppercase; padding: clamp(0.25rem, 0.35vw, 0.5rem) clamp(0.5rem, 0.69vw, 1rem); }
+.drama-process { padding: var(--py-s) var(--px); border-top: 1px solid rgba(255,255,255,0.06); }
+.drama-process-title { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: var(--fP); margin-bottom: clamp(2rem, 2.78vw, 4rem); }
+.drama-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 2.08vw, 3rem); }
+.dp-card { padding-top: clamp(1rem, 1.39vw, 2rem); border-top: 1px solid rgba(255,255,255,0.08); }
+.dp-card .dp-num { font-family: var(--mono); font-size: var(--fs); color: var(--blue); letter-spacing: 0.2em; margin-bottom: clamp(0.4rem, 0.56vw, 0.8rem); }
+.dp-card .dp-title { font-family: var(--serif); font-size: var(--fDP); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.dp-card .dp-body { font-family: var(--kr); font-size: var(--fb); font-weight: 300; line-height: 1.8; color: rgba(236,235,230,0.55); }
+.drama-sets { padding: var(--py-s) var(--px); border-top: 1px solid rgba(255,255,255,0.06); }
+.drama-sets-title { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: var(--fP); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.drama-sets-sub { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.15em; margin-bottom: clamp(1.5rem, 2.08vw, 3rem); }
+.drama-sets-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 0.69vw, 1rem); }
+.ds-card { aspect-ratio: 4/3; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(0.25rem, 0.35vw, 0.5rem); text-align: center; transition: border-color 0.4s, background 0.4s; }
+.ds-card:hover { border-color: var(--blue); background: rgba(255,255,255,0.06); }
+.ds-card .ds-name { font-size: var(--fb); font-weight: 400; }
+.ds-card .ds-type { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; }
+.drama-results { padding: clamp(2.5rem, 3.47vw, 5rem) var(--px); border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: clamp(2rem, 3.47vw, 5rem); align-items: center; flex-wrap: wrap; }
+.dr-stat { text-align: center; }
+.dr-stat .dr-n { font-family: var(--serif); font-style: italic; font-size: var(--fDs); color: var(--blue); line-height: 1; }
+.dr-stat .dr-d { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.12em; margin-top: clamp(0.25rem, 0.35vw, 0.5rem); }
+
+/* BRANDING */
+.brand-feature { background: #f0e8da; color: #2a2520; padding: 0; }
+.brand-feature .lbl { color: #9c7c5c; }
+.brand-feature .pj-img { background: linear-gradient(150deg, #e6dbc8, #ddd0ba, #e6dbc8); border-color: rgba(0,0,0,0.06); }
+.brand-feature .pj-img::after { color: rgba(0,0,0,0.06); }
+.brand-feature .pj-img .tag { background: #9c6030; color: #fff; }
+.brand-feature .pj-cat { color: #9c6030 !important; }
+.brand-feature .pj-body h3 { color: #2a2520; }
+.brand-feature .pj-body h3 em { color: #9c6030; }
+.brand-feature .pj-meta span { color: #8a7a6a; }
+.brand-feature .pj-meta span::before { background: #9c6030; }
+.brand-feature .pj-desc { color: rgba(42,37,32,0.55); }
+.brand-feature .pj-link { color: #2a2520; }
+.brand-feature .pj-link:hover { color: #9c6030; }
+.brand-feature .pj-thumbs .th { background: #e2d6c2; border-color: rgba(0,0,0,0.06); color: rgba(42,37,32,0.12); }
+.brand-feature .pj-thumbs .th:hover { border-color: #9c6030; }
+.brand-hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: var(--py) var(--px) clamp(3rem, 4.17vw, 6rem); position: relative; }
+.brand-hero-title { font-family: var(--serif); font-weight: 400; font-size: var(--fB); line-height: 1.1; letter-spacing: -0.02em; color: #2a2520; margin-bottom: clamp(1rem, 1.39vw, 2rem); }
+.brand-hero-title em { font-style: italic; color: #9c6030; }
+.brand-hero-desc { max-width: 41.67vw; font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2; color: rgba(42,37,32,0.55); }
+.brand-projects { padding: 0 var(--px) var(--py); }
+
+/* EXPERIENCE */
+.exp-sec { background: var(--bg2); }
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-lg); margin-top: clamp(2.5rem, 3.47vw, 5rem); }
+.exp-col h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.2rem, 1.11vw, 1.6rem); margin-bottom: clamp(1.5rem, 2.08vw, 3rem); padding-bottom: clamp(0.5rem, 0.69vw, 1rem); border-bottom: 1px solid rgba(42,68,232,0.25); display: inline-block; }
+.tl { padding: clamp(0.8rem, 1.04vw, 1.5rem); margin-bottom: clamp(0.4rem, 0.56vw, 0.8rem); background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.05); border-radius: clamp(6px, 0.69vw, 10px); position: relative; transition: all 0.3s; }
+.tl:hover { background: rgba(255,255,255,0.8); transform: translateX(4px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.tl.tl-current { opacity: 1; }
+.tl.tl-current:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+.tl.tl-mid { opacity: 0.65; }
+.tl.tl-mid:hover { opacity: 1; }
+.tl.tl-old { opacity: 0.4; }
+.tl.tl-old:hover { opacity: 1; }
+.tl .tl-p { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.15em; color: var(--blue2); margin-bottom: clamp(0.25rem, 0.35vw, 0.5rem); }
+.tl .tl-t { font-family: var(--kr); font-size: clamp(0.75rem, 0.61vw, 0.88rem); font-weight: 600; margin-bottom: clamp(0.25rem, 0.35vw, 0.5rem); color: var(--white); }
+.tl .tl-role { font-family: var(--kr); font-size: var(--fx); font-weight: 400; color: var(--blue2); margin-bottom: clamp(0.25rem, 0.35vw, 0.5rem); }
+.tl .tl-d { font-family: var(--kr); font-size: clamp(0.65rem, 0.52vw, 0.75rem); font-weight: 350; color: var(--dim); line-height: 1.8; }
+.tl-achieve { display: flex; align-items: flex-start; gap: clamp(0.25rem, 0.35vw, 0.5rem); margin-top: clamp(0.35rem, 0.49vw, 0.7rem); padding: clamp(0.3rem, 0.38vw, 0.55rem) clamp(0.4rem, 0.52vw, 0.75rem); background: rgba(42,68,232,0.06); border-left: 2px solid var(--blue); font-family: var(--kr); font-size: var(--fx); font-weight: 450; color: var(--blue2); line-height: 1.6; border-radius: 0 6px 6px 0; }
+.tl-achieve::before { content: '★'; flex-shrink: 0; font-size: clamp(0.45rem, 0.38vw, 0.55rem); color: var(--blue); margin-top: 1px; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: clamp(0.2rem, 0.28vw, 0.4rem); margin-top: clamp(0.4rem, 0.56vw, 0.8rem); }
+.tl-tag { font-family: var(--mono); font-size: clamp(0.45rem, 0.36vw, 0.52rem); letter-spacing: 0.08em; padding: clamp(0.15rem, 0.21vw, 0.3rem) clamp(0.35rem, 0.49vw, 0.7rem); background: rgba(42,68,232,0.06); border: 1px solid rgba(42,68,232,0.12); color: var(--blue2); text-transform: uppercase; border-radius: 4px; }
+
+/* SKILLS */
+.sk-cat-label { font-family: var(--mono); font-size: clamp(0.45rem, 0.38vw, 0.55rem); letter-spacing: 0.2em; color: var(--dim); text-transform: uppercase; margin-bottom: clamp(0.4rem, 0.56vw, 0.8rem); margin-top: clamp(1rem, 1.39vw, 2rem); }
+.sk-cat-label:first-child { margin-top: 0; }
+.sk-list { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.42vw, 0.6rem); }
+.sk-item { display: flex; align-items: center; gap: clamp(0.5rem, 0.69vw, 1rem); }
+.sk-item-name { font-family: var(--kr); font-size: clamp(0.65rem, 0.54vw, 0.78rem); font-weight: 500; min-width: clamp(70px, 6.94vw, 100px); color: var(--white); }
+.sk-bar-bg { flex: 1; height: clamp(4px, 0.42vw, 6px); background: rgba(0,0,0,0.06); border-radius: 3px; overflow: hidden; }
+.sk-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue2)); transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1); width: 0; }
+.sk-bar-fill.lv5 { --target-width: 95%; }
+.sk-bar-fill.lv4h { --target-width: 85%; }
+.sk-bar-fill.lv4 { --target-width: 80%; }
+.sk-bar-fill.lv3h { --target-width: 70%; }
+.sk-bar-fill.lv3 { --target-width: 60%; }
+.sk-bar-fill.lv2h { --target-width: 50%; }
+.sk-bar-fill.lv2 { --target-width: 40%; }
+.sk-bar-fill.animated { width: var(--target-width); }
+
+/* CONTACT */
+.cta { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: var(--py) var(--px); }
+.cta-title { font-family: var(--serif); font-weight: 400; font-size: var(--fC); line-height: 1.02; letter-spacing: -0.03em; margin-bottom: clamp(3rem, 4.17vw, 6rem); }
+.cta-title em { font-style: italic; color: var(--blue2); }
+.cta-title .thin { font-family: var(--sans); font-weight: 300; font-size: 0.6em; color: var(--white2); }
+.cta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 2.08vw, 3rem); }
+.cta-item { padding-top: clamp(1rem, 1.39vw, 2rem); border-top: 1px solid rgba(0,0,0,0.06); }
+.cta-item .cta-l { font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.35em; text-transform: uppercase; color: var(--dim); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.cta-item .cta-v { font-size: var(--fb); font-weight: 400; }
+.cta-item .cta-v a { color: var(--white); text-decoration: none; transition: color 0.3s; }
+.cta-item .cta-v a:hover { color: var(--blue); }
+
+/* FOOTER */
+footer { padding: clamp(1.2rem, 1.74vw, 2.5rem) var(--px); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); }
+footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.1em; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  :root { --px: 1.25rem; --py: 5rem; --py-s: 3.5rem; }
+  .n-links { display: none; }
+  .hero-mega-title { font-size: 13vw !important; }
+  .hero-intro-nav { flex-wrap: wrap; gap: 0.5rem; }
+  .hero-letter-content { max-width: 100%; }
+  .hero-letter-sub { max-width: 100%; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .pj-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  .exp-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .cta-grid { grid-template-columns: 1fr; }
+  .drama-process-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .drama-sets-grid { grid-template-columns: 1fr 1fr; }
+  .drama-desc-wide { max-width: 100%; }
+  .brand-hero-desc { max-width: 100%; }
+  footer { flex-direction: column; gap: 0.5rem; }
+}
+@media (min-width: 2000px) {
+  body { max-width: 2400px; margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="l-pct" id="lPct">0%</div>
+  <div class="l-bar"><span></span></div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="n-logo">Bae Inhyung</div>
+  <ul class="n-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#exp">Experience</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Intro -->
+<div class="hero-intro-wrap" id="heroIntroWrap">
+<section class="hero-intro" id="heroIntro">
+  <div class="hero-intro-top">
+    <div class="hero-mega-title">DESIGN PORTFOLIO</div>
+  </div>
+
+  <div class="hero-intro-nav">
+    <div class="hero-intro-nav-left">BAEINHYUNG</div>
+    <div class="hero-intro-nav-left" style="margin-left: 3rem;">Interior Designer</div>
+    <div class="hero-intro-nav-right">
+      <span>2021 — 2025</span>
+    </div>
+  </div>
+
+  <div class="hero-vid-box">
+    <div class="hero-vid-inner" id="heroVidInner">
+      <div class="vid-placeholder">Showreel Video<br>영상 링크 삽입 예정</div>
+    </div>
+  </div>
+
+  <div class="hero-letter-content" id="heroLetterContent">
+    <div class="hero-letter-meta">
+      <span>© Space Design Portfolio</span>
+      <span>(Bae Inhyung — 2025)</span>
+      <span>4.5+ Years Experience</span>
+    </div>
+    <h1 class="hero-letter-title" id="revealTitle">
+      <span class="letter">I</span><span class="letter">n</span><span class="letter">t</span><span class="letter">e</span><span class="letter">n</span><span class="letter">t</span><span class="letter">i</span><span class="letter">o</span><span class="letter">n</span><span class="letter">a</span><span class="letter">l</span><span class="letter-space"></span><span class="letter">S</span><span class="letter">h</span><span class="letter">a</span><span class="letter">d</span><span class="letter">o</span><span class="letter">w</span><span class="letter">s</span><span class="letter">,</span><span class="letter-break"></span><span class="letter">M</span><span class="letter">e</span><span class="letter">a</span><span class="letter">n</span><span class="letter">i</span><span class="letter">n</span><span class="letter">g</span><span class="letter">f</span><span class="letter">u</span><span class="letter">l</span><span class="letter-space"></span><span class="letter">L</span><span class="letter">i</span><span class="letter">g</span><span class="letter">h</span><span class="letter">t</span><span class="letter">.</span>
+    </h1>
+    <p class="hero-letter-sub">
+      그림자가 깊을수록, 빛은 선명합니다.<br>
+      완성된 공간이 누군가의 일상을 밝히는 빛이 되기를 바라며<br>
+      그림자의 자리에서 상상을 현실로 그려냅니다.
+    </p>
+  </div>
+
+  <div class="hero-intro-bottom" id="heroBottom">
+    <div class="hero-intro-powered">Designed by Bae Inhyung</div>
+    <div class="hero-intro-statement">
+      Space is not merely built — it is felt.<br>
+      Where function meets narrative, design becomes experience.
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- About -->
+<section class="sec pad" id="about">
+  <div class="bg-num">01</div>
+  <div class="about-grid">
+    <div class="rv">
+      <div class="lbl">About</div>
+      <h2 class="about-heading">
+        다양한 디자인 툴 활용 및<br>
+        협업에 능한 <em>공간 디자인</em><br>
+        전문가
+      </h2>
+      <p class="about-body">
+        다양한 디자인 툴을 활용하여 공간에 생명을 불어넣는 능력에 남다른 강점이 있습니다. KTR 한국화학융합시험연구원에서 '터치스크린을 활용한 콘텐츠 관리 중심의 리모델링'을 제안해 방치된 공간을 몰입형 공간으로 변모시켰고, 효율적인 예산 관리로 비용 절감과 품질 유지를 동시에 달성해왔습니다.
+      </p>
+      <p class="about-body" style="margin-top:1.2rem;">
+        드라마 세트에서는 PD · 연출 · 기술팀과, 인증기관에서는 시험 · 상담 · 전략 부서와 — 다양한 직군과의 풍부한 협업 경험이 가장 큰 자산입니다. 설계부터 시공 감리까지 전 과정을 아우르며, 공간이 가진 서사의 힘을 믿고 작업합니다.
+      </p>
+      <div class="about-stats">
+        <div class="st"><div class="st-n">4.5+</div><div class="st-d">Years Experience</div></div>
+        <div class="st"><div class="st-n">22</div><div class="st-d">Drama Sets</div></div>
+        <div class="st"><div class="st-n">17</div><div class="st-d">Branch Offices</div></div>
+        <div class="st"><div class="st-n">1,000</div><div class="st-d">py Largest Project</div></div>
+      </div>
+    </div>
+    <div class="about-img-wrap rv rv-d2">
+      <div class="about-ph">Profile Image</div>
+      <div class="about-frame"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="sec pad exp-sec" id="exp">
+  <div class="bg-num">02</div>
+  <div class="lbl">Experience & Skills</div>
+  <div class="exp-grid">
+    <div class="exp-col rv">
+      <h3>Experience</h3>
+      <div class="tl-visual">
+        <div class="tl tl-current">
+          <div class="tl-p">2023.05 — 재직중</div>
+          <div class="tl-t">KTR 한국화학융합시험연구원</div>
+          <div class="tl-role">경영기획본부 동반성장팀</div>
+          <div class="tl-d">공간 디자인 · 시공 감리 · 그래픽 디자인<br>ESG 경영에 따른 근무 환경 개선 및 인터널 브랜딩 오피스 구축<br>전국 17개 기관 접수센터 디자인 가이드라인 수립</div>
+          <div class="tl-achieve">'2023 KTR TOP 12' 수상 · 스마트워크추진TF 정식 조직 승격</div>
+          <div class="tl-tags">
+            <span class="tl-tag">17개 기관</span>
+            <span class="tl-tag">브랜딩</span>
+            <span class="tl-tag">시공감리</span>
+            <span class="tl-tag">TOP 12</span>
+          </div>
+        </div>
+        <div class="tl tl-mid">
+          <div class="tl-p">2022.07 — 2023.02</div>
+          <div class="tl-t">리한컴퍼니 (TV CHOSUN '빨간풍선')</div>
+          <div class="tl-role">미술팀 · 팀장</div>
+          <div class="tl-d">세트 디자인 · 시공 감리 · 아트 디렉팅<br>3,305㎡(1,000py) 공간에 22개 세트 설계<br>프리프로덕션 · 로케이션 헌팅</div>
+          <div class="tl-achieve">최고 시청률 11.6% · Netflix 대한민국 TOP 10 선정</div>
+          <div class="tl-tags">
+            <span class="tl-tag">22 Sets</span>
+            <span class="tl-tag">1,000py</span>
+            <span class="tl-tag">11.6%</span>
+            <span class="tl-tag">Netflix</span>
+          </div>
+        </div>
+        <div class="tl tl-old">
+          <div class="tl-p">2020.10 — 2021.10</div>
+          <div class="tl-t">㈜해피에듀테크</div>
+          <div class="tl-role">디자인팀 · 선임연구원</div>
+          <div class="tl-d">UI 디자인 · 브랜딩 · 디자인 가이드라인 설계<br>수학 교육 앱 'Math TWO' 기획 및 디자인<br>AI OCR 기술 활용 양방향 소통 교육 앱 개발</div>
+          <div class="tl-achieve">AppStore · Google Play 성공 런칭</div>
+          <div class="tl-tags">
+            <span class="tl-tag">UI/UX</span>
+            <span class="tl-tag">App Launch</span>
+            <span class="tl-tag">AI OCR</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:3rem;">Education</h3>
+      <div class="tl-visual">
+        <div class="tl tl-current">
+          <div class="tl-p">2012 — 2019</div>
+          <div class="tl-t">홍익대학교(세종)</div>
+          <div class="tl-d">디자인영상학부 졸업</div>
+        </div>
+        <div class="tl tl-mid">
+          <div class="tl-p">2008.03 — 2011.02</div>
+          <div class="tl-t">대구정화여자고등학교</div>
+          <div class="tl-d">졸업</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-col rv rv-d2">
+      <h3>Skills</h3>
+
+      <div class="sk-cat-label">Space Design</div>
+      <div class="sk-list">
+        <div class="sk-item"><span class="sk-item-name">AutoCAD</span><div class="sk-bar-bg"><div class="sk-bar-fill lv5"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">SketchUp</span><div class="sk-bar-bg"><div class="sk-bar-fill lv5"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">Enscape</span><div class="sk-bar-bg"><div class="sk-bar-fill lv4"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">D5 Render</span><div class="sk-bar-bg"><div class="sk-bar-fill lv3h"></div></div></div>
+      </div>
+
+      <div class="sk-cat-label">Graphic · Visual</div>
+      <div class="sk-list">
+        <div class="sk-item"><span class="sk-item-name">Photoshop</span><div class="sk-bar-bg"><div class="sk-bar-fill lv5"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">Illustrator</span><div class="sk-bar-bg"><div class="sk-bar-fill lv5"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">Figma</span><div class="sk-bar-bg"><div class="sk-bar-fill lv4"></div></div></div>
+      </div>
+
+      <div class="sk-cat-label">Motion · 3D</div>
+      <div class="sk-list">
+        <div class="sk-item"><span class="sk-item-name">After Effects</span><div class="sk-bar-bg"><div class="sk-bar-fill lv3"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">Premiere</span><div class="sk-bar-bg"><div class="sk-bar-fill lv3"></div></div></div>
+        <div class="sk-item"><span class="sk-item-name">Blender</span><div class="sk-bar-bg"><div class="sk-bar-fill lv2h"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="mq">
+  <div class="mq-track">
+    <span class="on">Space</span><span class="dot">·</span>
+    <span>Design</span><span class="dot">·</span>
+    <span class="bl">Branding</span><span class="dot">·</span>
+    <span>Interior</span><span class="dot">·</span>
+    <span class="on">Set Design</span><span class="dot">·</span>
+    <span>Remodeling</span><span class="dot">·</span>
+    <span class="bl">Architecture</span><span class="dot">·</span>
+    <span class="on">Space</span><span class="dot">·</span>
+    <span>Design</span><span class="dot">·</span>
+    <span class="bl">Branding</span><span class="dot">·</span>
+    <span>Interior</span><span class="dot">·</span>
+    <span class="on">Set Design</span><span class="dot">·</span>
+    <span>Remodeling</span><span class="dot">·</span>
+    <span class="bl">Architecture</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- Works -->
+<section class="sec pad" id="works">
+  <div class="bg-num">03</div>
+  <div class="works-header rv">
+    <div class="lbl">Selected Works</div>
+    <h2 class="works-title"><em>Selected</em> Works</h2>
+    <div class="works-sub">6 Projects — 2022 ~ 2025</div>
+  </div>
+
+  <!-- 01 -->
+  <div class="pj">
+    <div class="pj-img" data-label="KTR Brand Identity — 전국 17개 기관 상담창구 표준화">
+      <div class="tag">Featured</div>
+    </div>
+    <div class="pj-body">
+      <div class="pj-left">
+        <div class="pj-cat">Brand Identity · Commercial Space</div>
+        <h3>KTR <em>브랜드</em><br>아이덴티티 구축</h3>
+        <div class="pj-meta">
+          <span>2023.05 — 2025.08</span>
+          <span>전국 17개 기관</span>
+        </div>
+      </div>
+      <div class="pj-right">
+        <p class="pj-desc">디자인 가이드라인이 부재했던 KTR의 전국 17개 기관 상담창구를 표준화하여 고객이 어디서든 일관된 브랜드 경험을 할 수 있도록 설계했습니다. 업무 효율성과 브랜드 경험을 동시에 개선하는 것을 목표로 임했습니다.</p>
+        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+        <div class="pj-thumbs">
+          <div class="th">상담창구</div>
+          <div class="th">가이드라인</div>
+          <div class="th">컬러시스템</div>
+          <div class="th">사인시스템</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="pj">
+    <div class="pj-img" data-label="KTR 교육공간 리모델링 — 동해홀 242.35㎡"></div>
+    <div class="pj-body">
+      <div class="pj-left">
+        <div class="pj-cat">Education · Remodeling</div>
+        <h3><em>교육공간</em><br>리모델링</h3>
+        <div class="pj-meta">
+          <span>242.35㎡ (70py)</span>
+          <span>공사기간 30일</span>
+        </div>
+      </div>
+      <div class="pj-right">
+        <p class="pj-desc">KTR 과천청사의 동해홀 리모델링. 노후된 가구와 비효율적 동선 문제를 방음과 조도를 고려한 설계로 해결하여, 청사 내부 다른 교육장의 표준 모델로 선정되었습니다.</p>
+        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="pj">
+    <div class="pj-img" data-label="글로벌본부 업무공간 리모델링 — 528.9㎡"></div>
+    <div class="pj-body">
+      <div class="pj-left">
+        <div class="pj-cat">Office · Remodeling</div>
+        <h3>글로벌본부<br><em>업무공간</em> 리모델링</h3>
+        <div class="pj-meta">
+          <span>528.9㎡ (160py)</span>
+          <span>공사기간 24일</span>
+        </div>
+      </div>
+      <div class="pj-right">
+        <p class="pj-desc">좁은 좌석 간격과 노후된 가구 환경을 개선해 글로벌 기업 수준의 근무환경을 구현. 멀티미디어 장비와 브랜드 이미지를 효과적으로 담아낸 공간으로 설계했습니다.</p>
+        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="pj">
+    <div class="pj-img" data-label="시흥 바이오특화연구소 조감도 — 4,800py"></div>
+    <div class="pj-body">
+      <div class="pj-left">
+        <div class="pj-cat">Exterior · Aerial Rendering</div>
+        <h3>시흥 <em>바이오특화</em><br>연구소 조감도</h3>
+        <div class="pj-meta">
+          <span>4,800py</span>
+          <span>완공 예정 2028</span>
+        </div>
+      </div>
+      <div class="pj-right">
+        <p class="pj-desc">연면적 4,800평 규모의 조감도를 설계. 현대적 파사드와 KTR 브랜드 아이덴티티를 반영한 외관으로 첨단 바이오 거점 이미지를 구현하고, 시흥의 녹지와 어우러진 조경 계획을 반영했습니다.</p>
+        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="pj">
+    <div class="pj-img" data-label="탄소중립화학규제지원본부 — 신축 228py"></div>
+    <div class="pj-body">
+      <div class="pj-left">
+        <div class="pj-cat">Office · New Build</div>
+        <h3><em>탄소중립</em>화학규제<br>지원본부 신축</h3>
+        <div class="pj-meta">
+          <span>228py</span>
+          <span>설계 및 감리</span>
+        </div>
+      </div>
+      <div class="pj-right">
+        <p class="pj-desc">KTR 탄소중립화학규제지원본부 신축 프로젝트. 새롭게 신설되는 본부의 업무 환경을 처음부터 설계하여, 조직 특성에 맞는 효율적인 공간 구성과 브랜드 아이덴티티를 반영한 오피스를 구축했습니다.</p>
+        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 빨간풍선 Drama Feature -->
+<section class="drama-feature rv">
+  <div class="drama-hero">
+    <div class="drama-badge">TV Drama · Featured Project</div>
+    <div class="lbl">Set Design · 2022 — 2023</div>
+    <h2 class="drama-hero-title">
+      <em>빨간풍선</em><br>미술 총괄
+    </h2>
+    <div class="drama-meta-row">
+      <div class="drama-meta-item">
+        <div class="dm-label">채널</div>
+        <div class="dm-val">TV CHOSUN</div>
+      </div>
+      <div class="drama-meta-item">
+        <div class="dm-label">제작사</div>
+        <div class="dm-val">초록뱀미디어</div>
+      </div>
+      <div class="drama-meta-item">
+        <div class="dm-label">기간</div>
+        <div class="dm-val">2022.07 — 2023.02</div>
+      </div>
+      <div class="drama-meta-item">
+        <div class="dm-label">방송횟수</div>
+        <div class="dm-val">20부작</div>
+      </div>
+      <div class="drama-meta-item">
+        <div class="dm-label">담당</div>
+        <div class="dm-val">미술팀장 · 미술 업무 총괄</div>
+      </div>
+      <div class="drama-meta-item">
+        <div class="dm-label">면적</div>
+        <div class="dm-val">3,305㎡ (1,000py)</div>
+      </div>
+    </div>
+    <p class="drama-desc-wide">
+      드라마 '빨간풍선'에서 미술팀장으로 참여하여 전반적인 세트 디자인과 현장 미술 작업을 총괄했습니다. 주거, 사무, 상업 공간 등 다양한 로케이션과 세트에서 인물의 성격과 서사를 시각적으로 표현하기 위해 색채 · 재질 · 가구 배치를 세심하게 계획했습니다. 공간마다 드라마의 감정선과 분위기를 살리기 위해 포인트 소품과 맞춤 제작 가구를 적용했고, 촬영 동선과 카메라 앵글을 고려해 세부 구조를 설계했습니다.
+    </p>
+  </div>
+
+  <div class="drama-process rv">
+    <h3 class="drama-process-title">Process</h3>
+    <div class="drama-process-grid">
+      <div class="dp-card">
+        <div class="dp-num">01</div>
+        <div class="dp-title">Pre-Production</div>
+        <div class="dp-body">
+          연출 협의 자료 제작(3회)<br>
+          대본 분석 후 레퍼런스 이미지보드, 무드보드, 색채 계획안 작성<br>
+          미술 전체 예산안 작성<br>
+          가도면 제작 · 3D Modeling
+        </div>
+      </div>
+      <div class="dp-card">
+        <div class="dp-num">02</div>
+        <div class="dp-title">Set Design & Build</div>
+        <div class="dp-body">
+          1,000py 공간에 22개 세트 제작 시공 감리<br>
+          실시 평면도 · 입면도 · 전식도면 설계<br>
+          마감재 선정 및 공사 현장 감리<br>
+          전체 공정 견적서 검토 · 일정 관리 · 예산 분배
+        </div>
+      </div>
+      <div class="dp-card">
+        <div class="dp-num">03</div>
+        <div class="dp-title">Art Directing</div>
+        <div class="dp-body">
+          스타일리스트팀 · 소품팀 · 현장진행팀 공정 검수<br>
+          로케이션 헌팅 · 야외 드레싱 진행<br>
+          시각물 디자인 및 인쇄 감리<br>
+          특수가구 · 소도구 설계도면 제작
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drama-sets rv">
+    <h3 class="drama-sets-title">Space Design — 22 Sets</h3>
+    <div class="drama-sets-sub">주요 세트 공간 설계 목록</div>
+    <div class="drama-sets-grid">
+      <div class="ds-card"><div class="ds-name">은강 집</div><div class="ds-type">주거공간</div></div>
+      <div class="ds-card"><div class="ds-name">바다 아파트</div><div class="ds-type">주거공간</div></div>
+      <div class="ds-card"><div class="ds-name">물상 집</div><div class="ds-type">주거공간</div></div>
+      <div class="ds-card"><div class="ds-name">바다 사무실</div><div class="ds-type">사무공간</div></div>
+      <div class="ds-card"><div class="ds-name">은산 오피스텔</div><div class="ds-type">주거공간</div></div>
+      <div class="ds-card"><div class="ds-name">전희 요양원</div><div class="ds-type">의료공간</div></div>
+      <div class="ds-card"><div class="ds-name">차원 진료실</div><div class="ds-type">의료공간</div></div>
+      <div class="ds-card"><div class="ds-name">고시원 · 피팅룸</div><div class="ds-type">상업공간</div></div>
+    </div>
+  </div>
+
+  <div class="drama-results rv">
+    <div class="dr-stat"><div class="dr-n">11.6%</div><div class="dr-d">최고 시청률</div></div>
+    <div class="dr-stat"><div class="dr-n">22</div><div class="dr-d">세트 제작</div></div>
+    <div class="dr-stat"><div class="dr-n">1,000</div><div class="dr-d">py 총 면적</div></div>
+    <div class="dr-stat"><div class="dr-n">20</div><div class="dr-d">부작 방영</div></div>
+    <div class="dr-stat"><div class="dr-n">TOP 10</div><div class="dr-d">Netflix Korea</div></div>
+  </div>
+</section>
+
+<!-- Branding Feature -->
+<section class="brand-feature rv" id="branding">
+  <div class="brand-hero">
+    <div class="bg-num" style="font-style: italic;">B</div>
+    <div class="lbl">Branding & Design</div>
+    <h2 class="brand-hero-title">
+      공간을 넘어<br>
+      <em>브랜드</em>를 디자인하다
+    </h2>
+    <p class="brand-hero-desc">
+      공간디자인 외에도 UI 디자인, 캐릭터 디자인, 브랜드 아이덴티티 등 다양한 영역의 디자인 경험을 쌓아왔습니다. 사용자 경험을 설계하는 UI부터, 브랜드의 얼굴이 되는 캐릭터까지 — 공간을 넘어 브랜드 전체를 아우르는 시각 커뮤니케이션을 지향합니다.
+    </p>
+  </div>
+
+  <div class="brand-projects">
+    <!-- Math TWO -->
+    <div class="pj">
+      <div class="pj-img" data-label="Math TWO — AI OCR 교육 앱 UI 디자인">
+        <div class="tag">UI/UX</div>
+      </div>
+      <div class="pj-body">
+        <div class="pj-left">
+          <div class="pj-cat">UI Design · Application</div>
+          <h3><em>Math TWO</em><br>교육 앱 디자인</h3>
+          <div class="pj-meta">
+            <span>2020.10 — 2021.10</span>
+            <span>㈜해피에듀테크</span>
+          </div>
+        </div>
+        <div class="pj-right">
+          <p class="pj-desc">AI OCR 기술을 활용한 양방향 소통 교육 앱의 UI 디자인 및 브랜딩을 담당. User Journey Mapping, Wireframe, Prototype 디자인을 수행하여 AppStore와 Google Play에 성공적으로 런칭했습니다. 대구스타트업리더스포럼 IR 피칭을 위한 인터랙션 부스도 제작했습니다.</p>
+          <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+          <div class="pj-thumbs">
+            <div class="th">UI 디자인</div>
+            <div class="th">와이어프레임</div>
+            <div class="th">프로토타입</div>
+            <div class="th">부스 디자인</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KTR 캐릭터 -->
+    <div class="pj">
+      <div class="pj-img" data-label="KTR 캐릭터 디자인 — 브랜드 마스코트">
+        <div class="tag">Character</div>
+      </div>
+      <div class="pj-body">
+        <div class="pj-left">
+          <div class="pj-cat">Character · Brand Identity</div>
+          <h3>KTR <em>캐릭터</em><br>디자인</h3>
+          <div class="pj-meta">
+            <span>KTR 한국화학융합시험연구원</span>
+            <span>브랜드 마스코트</span>
+          </div>
+        </div>
+        <div class="pj-right">
+          <p class="pj-desc">KTR의 브랜드 아이덴티티를 강화하기 위한 캐릭터 디자인 프로젝트. 조직의 전문성과 친근함을 동시에 전달하는 마스코트를 개발하여 사내외 커뮤니케이션에 활용했습니다.</p>
+          <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+          <div class="pj-thumbs">
+            <div class="th">캐릭터 시안</div>
+            <div class="th">응용 디자인</div>
+            <div class="th">굿즈 적용</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="cta" id="contact">
+  <div class="rv">
+    <div class="lbl">Contact</div>
+    <div class="cta-title">
+      Let's <em>Create</em><br>
+      <span class="thin">Space Together</span>
+    </div>
+    <div class="cta-grid">
+      <div class="cta-item">
+        <div class="cta-l">Designer</div>
+        <div class="cta-v">배인형 · Bae Inhyung</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-l">Mobile</div>
+        <div class="cta-v"><a href="tel:010-6680-8298">010-6680-8298</a></div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-l">E-Mail</div>
+        <div class="cta-v"><a href="mailto:sky8298@naver.com">sky8298@naver.com</a></div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-l">Education</div>
+        <div class="cta-v">홍익대학교(세종) 디자인영상학부</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-l">Location</div>
+        <div class="cta-v">경기도 안양시</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-l">Career</div>
+        <div class="cta-v">총 4년 6개월</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Bae Inhyung</span>
+  <span>Space Design Portfolio</span>
+</footer>
+
+<script>
+// Loader
+let pct = 0;
+const pctEl = document.getElementById('lPct');
+const loaderEl = document.getElementById('loader');
+const pctInterval = setInterval(() => {
+  pct += Math.floor(Math.random() * 8) + 2;
+  if (pct >= 100) {
+    pct = 100;
+    clearInterval(pctInterval);
+    setTimeout(() => loaderEl.classList.add('out'), 400);
+  }
+  pctEl.textContent = pct + '%';
+}, 80);
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.rv, .pj').forEach(el => obs.observe(el));
+
+// Smooth nav
+document.querySelectorAll('.n-links a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Nav show/hide
+const nLogo = document.querySelector('.n-logo');
+const navEl = document.querySelector('nav');
+const introWrap = document.getElementById('heroIntroWrap');
+const vidInner = document.getElementById('heroVidInner');
+const heroIntroEl = document.getElementById('heroIntro');
+const letterContent = document.getElementById('heroLetterContent');
+const letters = document.querySelectorAll('#revealTitle .letter');
+const heroBottom = document.getElementById('heroBottom');
+
+window.addEventListener('scroll', () => {
+  if (!navEl || !introWrap) return;
+  const introBottom = introWrap.getBoundingClientRect().bottom;
+  if (introBottom <= 0) {
+    navEl.style.opacity = '1';
+    navEl.style.pointerEvents = 'auto';
+    nLogo.style.opacity = '1';
+  } else {
+    navEl.style.opacity = '0';
+    navEl.style.pointerEvents = 'none';
+    nLogo.style.opacity = '0';
+  }
+});
+
+// Hero scroll animation
+window.addEventListener('scroll', () => {
+  if (!introWrap || !vidInner) return;
+  const rect = introWrap.getBoundingClientRect();
+  const scrollIn = -rect.top;
+  const totalScroll = introWrap.offsetHeight - window.innerHeight;
+  const progress = Math.max(0, Math.min(1, scrollIn / totalScroll));
+
+  const top = heroIntroEl?.querySelector('.hero-intro-top');
+  const nav = heroIntroEl?.querySelector('.hero-intro-nav');
+
+  if (progress < 0.35) {
+    const p = progress / 0.35;
+    vidInner.style.width = (35 + p * 65) + '%';
+    vidInner.style.borderRadius = ((1 - p) * 4) + 'px';
+    vidInner.style.borderColor = `rgba(255,255,255,${0.06 * (1 - p)})`;
+    const fade = Math.max(0, 1 - p * 2.5);
+    if (top) top.style.opacity = fade;
+    if (nav) nav.style.opacity = fade;
+    if (heroBottom) heroBottom.style.opacity = fade;
+    if (letterContent) letterContent.style.opacity = 0;
+    letters.forEach(l => l.classList.remove('lit'));
+  } else if (progress < 0.5) {
+    const p = (progress - 0.35) / 0.15;
+    vidInner.style.width = '100%';
+    vidInner.style.borderRadius = '0';
+    if (top) top.style.opacity = 0;
+    if (nav) nav.style.opacity = 0;
+    if (heroBottom) heroBottom.style.opacity = 0;
+    if (letterContent) letterContent.style.opacity = p;
+    letters.forEach(l => l.classList.remove('lit'));
+  } else {
+    const p = (progress - 0.5) / 0.5;
+    vidInner.style.width = '100%';
+    if (top) top.style.opacity = 0;
+    if (nav) nav.style.opacity = 0;
+    if (heroBottom) heroBottom.style.opacity = 0;
+    if (letterContent) letterContent.style.opacity = 1;
+    const litCount = Math.floor(p * letters.length);
+    letters.forEach((l, i) => {
+      if (i < litCount) l.classList.add('lit');
+      else l.classList.remove('lit');
+    });
+  }
+});
+
+// Skill bars animation
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sk-bar-fill').forEach((bar, i) => {
+        setTimeout(() => bar.classList.add('animated'), i * 100);
+      });
+      skillObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.exp-col').forEach(col => {
+  if (col.querySelector('.sk-list')) skillObs.observe(col);
+});
+</script>
+</body>
+</html>
