@@ -123,17 +123,17 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .st .st-d { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.12em; margin-top: clamp(0.3rem, 0.42vw, 0.6rem); }
 
 /* MARQUEE */
-.mq { padding: clamp(2rem, 2.78vw, 4rem) 0; overflow: hidden; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
-.mq-track { display: flex; width: max-content; animation: mqScroll 35s linear infinite; }
+.mq { background: #0a0a0f; padding: clamp(1.5rem, 2.08vw, 3rem) 0; overflow: hidden; }
+.mq-track { display: flex; width: max-content; animation: mqScroll 30s linear infinite; }
+.mq-track.mq-reverse { animation: mqScrollRev 30s linear infinite; }
 @keyframes mqScroll { to { transform: translateX(-50%); } }
-    .mq-track.mq-reverse { animation: mqScrollRev 35s linear infinite; }
-@keyframes mqScrollRev { to { transform: translateX(50%); } }
+@keyframes mqScrollRev { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
+.mq-track span { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 2.5vw, 3.5rem); color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; padding: 0; }
+.mq-reverse span { font-size: clamp(1rem, 1.5vw, 2rem); }
+.mq-track span.on { color: rgba(255,255,255,0.9); }
 .mq-track span.or { color: #FF5C00; }
-.mq-reverse span { font-size: var(--fP); }
-.mq-track span { font-family: var(--serif); font-size: var(--fM); white-space: nowrap; padding: 0 clamp(0.6rem, 1.04vw, 1.5rem); color: rgba(0,0,0,0.05); font-weight: 400; }
-.mq-track span.on { color: var(--white); font-style: italic; }
-.mq-track span.bl { color: var(--blue2); }
-.mq-track .dot { font-size: 0.6em; color: var(--blue); align-self: center; padding: 0 clamp(0.3rem, 0.56vw, 0.8rem); }
+.mq-track span.bl { color: rgba(255,255,255,0.4); }
+.mq-track .dot { font-size: 0.5em; color: #FF5C00; align-self: center; padding: 0 clamp(0.5rem, 1vw, 1.5rem); }
 
 /* PROJECTS */
 .works-header { margin-bottom: clamp(4rem, 6.94vw, 10rem); }
@@ -600,14 +600,14 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <div class="mq-track">
     <span class="on">Interior</span><span class="dot">✦</span>
     <span>Set Design</span><span class="dot">✦</span>
-    <span class="bl">Remodeling</span><span class="dot">✦</span>
+    <span class="or">Remodeling</span><span class="dot">✦</span>
     <span>Architecture</span><span class="dot">✦</span>
     <span class="on">Space Design</span><span class="dot">✦</span>
     <span>Branding</span><span class="dot">✦</span>
     <span class="or">Graphic Design</span><span class="dot">✦</span>
     <span class="on">Interior</span><span class="dot">✦</span>
     <span>Set Design</span><span class="dot">✦</span>
-    <span class="bl">Remodeling</span><span class="dot">✦</span>
+    <span class="or">Remodeling</span><span class="dot">✦</span>
     <span>Architecture</span><span class="dot">✦</span>
     <span class="on">Space Design</span><span class="dot">✦</span>
     <span>Branding</span><span class="dot">✦</span>
@@ -630,6 +630,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
     <span>Graphic Design</span><span class="dot">✦</span>
   </div>
 </div>
+
   <!-- Works -->
 <section class="sec pad" id="works">
   <div class="bg-num">03</div>
