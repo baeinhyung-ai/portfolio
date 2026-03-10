@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTR 글로벌본부 업무공간 리모델링 — Bae Inhyung</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@200;300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./PretendardVariable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f6f5f1;
+  --bg2: #ecebe6;
+  --white: #1a1a1f;
+  --white2: rgba(26,26,31,0.70);
+  --dim: #6e6e7a;
+  --blue: #2a44e8;
+  --blue2: #3355dd;
+  --blue-g: rgba(42,68,232,0.05);
+  --serif: 'Instrument Serif', serif;
+  --sans: 'DM Sans', sans-serif;
+  --kr: 'Pretendard', 'Noto Sans KR', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--blue); color: #fff; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 1.6rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 500;
+  background: rgba(246,245,241,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(26,26,31,0.07);
+}
+.n-back {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--dim);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.25s;
+}
+.n-back:hover { color: var(--blue); }
+.n-back svg {
+  width: 14px; height: 14px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s;
+}
+.n-back:hover svg { transform: translateX(-3px); }
+.n-logo {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.n-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+
+/* ── HERO ── */
+.detail-hero {
+  padding-top: 7rem;
+  padding-bottom: 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.detail-hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 4rem 0;
+}
+.detail-hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.detail-cat {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.detail-hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  max-width: 18ch;
+}
+.detail-hero-title em { font-style: italic; color: var(--blue); }
+.detail-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  min-width: 200px;
+  padding-top: 0.5rem;
+}
+.meta-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.meta-val {
+  font-family: var(--kr);
+  font-weight: 400;
+  font-size: 0.88rem;
+  color: var(--white);
+}
+
+/* Cover — before/after split */
+.detail-cover {
+  width: 100%;
+  height: 52vw;
+  max-height: 680px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(26,26,31,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.cover-before {
+  background: linear-gradient(135deg, #2a2a2a, #3d3d3d);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  position: relative;
+}
+.cover-after {
+  background: linear-gradient(135deg, #0d1b3e, #1a2f5a);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  position: relative;
+}
+.cover-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.3);
+  padding: 0.4rem 0.8rem;
+}
+.cover-before-bg {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.01) 0px,
+    rgba(255,255,255,0.01) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+}
+.cover-after-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.05);
+  white-space: nowrap;
+}
+
+/* ── CONTENT ── */
+.content-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* ── OVERVIEW ── */
+.overview-sec {
+  padding: 7rem 0 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  border-bottom: 1px solid rgba(26,26,31,0.1);
+}
+.overview-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.overview-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+.overview-heading em { font-style: italic; }
+.overview-body {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 2.1;
+  color: var(--white2);
+}
+.ov-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(26,26,31,0.1);
+  margin-bottom: 1.5rem;
+}
+.ov-stat {
+  background: var(--bg);
+  padding: 1.8rem 1.6rem;
+}
+.ov-stat-num {
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.ov-stat-desc {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--dim);
+  line-height: 1.5;
+}
+.ov-challenge {
+  background: var(--bg2);
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.ov-challenge-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.ov-challenge p {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.95;
+  color: var(--white2);
+}
+.ov-goal {
+  border: 1px solid rgba(42,68,232,0.2);
+  padding: 2.5rem;
+  background: var(--blue-g);
+}
+.ov-goal-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.ov-goal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.ov-goal-list li {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--white);
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+.ov-goal-list li::before {
+  content: '→';
+  color: var(--blue);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+/* ── PROCESS ── */
+.process-section { padding: 7rem 0; }
+.process-section-header { margin-bottom: 5rem; }
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.section-title em { font-style: italic; }
+
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.process-step {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  padding: 4.5rem 0;
+  border-top: 1px solid rgba(26,26,31,0.1);
+}
+.process-step:last-child { border-bottom: 1px solid rgba(26,26,31,0.1); }
+.ps-num-big {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  margin-bottom: 1.2rem;
+}
+.ps-step-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.ps-step-kr {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+.ps-content-title {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 1.4rem;
+}
+.ps-content-title em { font-style: italic; color: var(--blue); }
+.ps-content-body {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 2.1;
+  color: var(--white2);
+  margin-bottom: 2rem;
+  max-width: 60ch;
+}
+.ps-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ps-detail-card {
+  background: var(--bg2);
+  padding: 1.6rem 1.8rem;
+}
+.ps-detail-card-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.ps-detail-card p {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--white2);
+}
+.ps-insight {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.4rem 1.8rem;
+  border-left: 2px solid var(--blue);
+  background: var(--blue-g);
+}
+.ps-insight-icon { color: var(--blue); font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1em; }
+.ps-insight p {
+  font-family: var(--kr);
+  font-weight: 400;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--blue2);
+}
+
+/* ── RESULT ── */
+.result-sec {
+  padding: 6rem 0 8rem;
+  border-top: 1px solid rgba(26,26,31,0.1);
+}
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(26,26,31,0.1);
+  margin: 4rem 0;
+}
+.result-card {
+  background: var(--bg);
+  padding: 2.8rem 2rem;
+}
+.result-num {
+  font-family: var(--mono);
+  font-size: 2.2rem;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.result-num sup { font-size: 0.8rem; vertical-align: super; }
+.result-desc {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--white2);
+  line-height: 1.7;
+}
+.result-quote {
+  background: var(--bg2);
+  padding: 3rem;
+  position: relative;
+}
+.result-quote::before {
+  content: '"';
+  font-family: var(--serif);
+  font-size: 6rem;
+  color: rgba(42,68,232,0.12);
+  position: absolute;
+  top: 1rem; left: 1.8rem;
+  line-height: 1;
+}
+.result-quote p {
+  font-family: var(--kr);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  padding-left: 1rem;
+}
+.result-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  font-style: normal;
+  padding-left: 1rem;
+}
+
+/* ── NEXT ── */
+.next-project { border-top: 1px solid rgba(26,26,31,0.1); padding: 4rem 0; }
+.next-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.next-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.next-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.next-title em { font-style: italic; color: var(--blue); }
+.next-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  transition: gap 0.25s;
+}
+.next-link:hover { gap: 1.2rem; }
+.next-link svg {
+  width: 18px; height: 18px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(26,26,31,0.07);
+  background: var(--bg2);
+}
+.ft-copy {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+}
+
+/* ── REVEAL ── */
+.rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.25,0.1,0.25,1), transform 0.75s cubic-bezier(0.25,0.1,0.25,1);
+}
+.rv.in { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .n-tag { display: none; }
+  .detail-hero-inner { padding: 3rem 1.5rem 0; }
+  .detail-hero-top { flex-direction: column; gap: 2rem; }
+  .content-wrap { padding: 0 1.5rem; }
+  .overview-sec { grid-template-columns: 1fr; gap: 3rem; }
+  .ov-stats { grid-template-columns: repeat(3, 1fr); }
+  .process-step { grid-template-columns: 1fr; gap: 2rem; }
+  .ps-detail-grid { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; }
+  .next-inner { padding: 0 1.5rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="./index.html" class="n-back">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+  <div class="n-logo">Bae Inhyung</div>
+  <div class="n-tag">02 / KTR 글로벌본부</div>
+</nav>
+
+<!-- Hero -->
+<div class="detail-hero">
+  <div class="detail-hero-inner">
+    <div class="detail-hero-top rv">
+      <div>
+        <div class="detail-cat">Office · Remodeling</div>
+        <h1 class="detail-hero-title">글로벌본부<br><em>업무공간</em><br>리모델링</h1>
+      </div>
+      <div class="detail-hero-meta">
+        <div class="meta-item">
+          <div class="meta-label">면적</div>
+          <div class="meta-val">528.9㎡ (160py)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">공사기간</div>
+          <div class="meta-val">24일</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">담당 업무</div>
+          <div class="meta-val">설계, 디자인, 공사 감리</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">클라이언트</div>
+          <div class="meta-val">KTR 글로벌본부</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cover -->
+  <div class="detail-cover">
+    <div class="cover-before">
+      <div class="cover-before-bg"></div>
+      <div class="cover-label">Before — 시공 전</div>
+    </div>
+    <div class="cover-after">
+      <div class="cover-after-text">GLOBAL</div>
+      <div class="cover-label">After — 시공 후</div>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content-wrap">
+
+  <!-- Overview -->
+  <div class="overview-sec rv">
+    <div class="overview-left">
+      <div class="overview-label">Overview</div>
+      <h2 class="overview-heading">좁은 사무실을<br><em>글로벌 공간</em>으로</h2>
+      <p class="overview-body">KTR 글로벌본부는 청사 방문객 투어 동선으로도 이용되는 공간이었지만, 좁은 좌석 간격과 노후된 가구로 인해 글로벌 기업 이미지와 거리가 있었습니다. 24일이라는 촉박한 공사 기간 안에 설계 의도를 끝까지 관철하며 공간을 완성했습니다.</p>
+    </div>
+    <div class="overview-right">
+      <div class="ov-stats">
+        <div class="ov-stat">
+          <div class="ov-stat-num">528</div>
+          <div class="ov-stat-desc">㎡ 규모<br>160평</div>
+        </div>
+        <div class="ov-stat">
+          <div class="ov-stat-num">24</div>
+          <div class="ov-stat-desc">일 공사<br>완공</div>
+        </div>
+        <div class="ov-stat">
+          <div class="ov-stat-num">↑</div>
+          <div class="ov-stat-desc">투어 방문객<br>브랜드 인상</div>
+        </div>
+      </div>
+      <div class="ov-challenge">
+        <div class="ov-challenge-title">Challenge</div>
+        <p>업무 공간이면서 동시에 방문객 투어 코스인 공간 — 직원의 업무 효율과 방문객에게 전달하는 글로벌 이미지를 동시에 잡아야 했습니다. 물리적 제약(기존 배관·배선)과 타이트한 일정이 가장 큰 변수였습니다.</p>
+      </div>
+      <div class="ov-goal">
+        <div class="ov-goal-title">Design Goal</div>
+        <ul class="ov-goal-list">
+          <li>글로벌 기업 수준의 근무 환경 구현</li>
+          <li>방문객 투어 동선에서 KTR 브랜드 메시지 전달</li>
+          <li>멀티미디어 장비와 브랜드 아이덴티티 통합</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process -->
+  <div class="process-section">
+    <div class="process-section-header rv">
+      <div class="section-label">Design Process</div>
+      <h2 class="section-title">24일 안에 <em>완성한</em> 과정</h2>
+    </div>
+
+    <div class="process-steps">
+
+      <!-- 01 Research -->
+      <div class="process-step rv">
+        <div class="ps-left">
+          <div class="ps-num-big">01 —</div>
+          <div class="ps-step-name">Research</div>
+          <div class="ps-step-kr">현장 조사 & 문제 정의</div>
+        </div>
+        <div class="ps-right">
+          <h3 class="ps-content-title">공항에서 <em>레퍼런스</em>를 찾았습니다</h3>
+          <p class="ps-content-body">글로벌본부의 요청은 "세계로 뻗어나가는 KTR을 표현해달라"였습니다. 국제 공간의 분위기를 직접 체험하기 위해 김포공항과 인천공항을 방문해 탑승 동선, 사이니지 시스템, 공간 시퀀스를 직접 촬영하고 분석했습니다. LG전자 평택연구소의 사이니지 사례도 현장에서 수집했습니다.</p>
+          <div class="ps-detail-grid">
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">현장 리서치</div>
+              <p>김포공항, 인천공항 — 탑승 동선과 방향 사이니지 시스템 분석</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">벤치마킹</div>
+              <p>LG전자 평택연구소 사이니지 설치 사례 현장 촬영 및 분석</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">공간 현황</div>
+              <p>좁은 고정 책상, 복잡한 동선, 미디어 장비 부재 — 글로벌 이미지와 괴리 확인</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">사용자 인터뷰</div>
+              <p>글로벌본부 직원 대상 — 업무 불편 사항, 공간에 바라는 점 수집</p>
+            </div>
+          </div>
+          <div class="ps-insight">
+            <div class="ps-insight-icon">→</div>
+            <p>공항처럼 방향성이 명확한 동선에서 목적지에 도달하는 성취감 — 이것을 공간 컨셉의 출발점으로 삼았습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Concept -->
+      <div class="process-step rv">
+        <div class="ps-left">
+          <div class="ps-num-big">02 —</div>
+          <div class="ps-step-name">Concept</div>
+          <div class="ps-step-kr">컨셉 개발 & 아이디어 스케치</div>
+        </div>
+        <div class="ps-right">
+          <h3 class="ps-content-title"><em>여정(Journey)</em>을 공간 언어로</h3>
+          <p class="ps-content-body">공항 동선에서 얻은 인사이트를 공간 언어로 번역했습니다. 핵심 동선인 복도를 브랜드의 상징 공간으로 전환하고, 세계 각국과의 협력 관계를 시각화하는 인터랙티브 요소를 설계했습니다. 방문객이 복도를 지나는 짧은 순간에도 KTR의 글로벌 존재감을 느낄 수 있도록 했습니다.</p>
+          <div class="ps-detail-grid">
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">핵심 컨셉</div>
+              <p>좁은 복도 → 글로벌 파트너십을 향해 나아가는 여정의 공간</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">인터랙션 설계</div>
+              <p>자착 부착 가능한 세계지도 제작 → 직원이 협력국 뱃지를 직접 붙이는 참여형 사이니지</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">미디어 배치</div>
+              <p>시각 아이덴티티와 미디어 요소를 동선 핵심 포인트에 집중 배치</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">컬러 전략</div>
+              <p>KTR 딥 네이비를 포인트 컬러로 — 전문성과 글로벌 신뢰감 표현</p>
+            </div>
+          </div>
+          <div class="ps-insight">
+            <div class="ps-insight-icon">→</div>
+            <p>기존 회사에서 사용하던 영상 콘텐츠를 다른 스타일로 재구성해, 글로벌본부만의 차별화된 정체성을 강조했습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Develop -->
+      <div class="process-step rv">
+        <div class="ps-left">
+          <div class="ps-num-big">03 —</div>
+          <div class="ps-step-name">Develop</div>
+          <div class="ps-step-kr">3D 모델링 & 설계 완성</div>
+        </div>
+        <div class="ps-right">
+          <h3 class="ps-content-title">물리적 제약 안에서<br><em>최선의 배치</em>를 찾았습니다</h3>
+          <p class="ps-content-body">고정 책상이 많아 공간 밀도가 높았고, 전면적 콘셉트 적용에는 물리적·예산적 제약이 있었습니다. SketchUp과 Enscape로 공간 시뮬레이션을 반복하며, 기존 구조를 최대한 활용하면서도 컨셉을 구현할 수 있는 최적 배치를 도출했습니다.</p>
+          <div class="ps-detail-grid">
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">공간 전략</div>
+              <p>핵심 복도에 집중 투자 — 전체 리노베이션 대신 방문객 동선 핵심 포인트에 예산 집중</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">모델링 툴</div>
+              <p>AutoCAD → SketchUp → Enscape 파이프라인으로 실제 공간감 검증</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">세계지도 설계</div>
+              <p>자착식 세계지도 — 협력국 뱃지 부착 방식, 직원이 직접 업데이트 가능</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">미디어 솔루션</div>
+              <p>기존 영상 콘텐츠 재편집 → 글로벌본부 특화 버전으로 재구성, 별도 제작비 절감</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Execute -->
+      <div class="process-step rv">
+        <div class="ps-left">
+          <div class="ps-num-big">04 —</div>
+          <div class="ps-step-name">Execute</div>
+          <div class="ps-step-kr">공사 감리 & 실행</div>
+        </div>
+        <div class="ps-right">
+          <h3 class="ps-content-title">24일, 반장님들과<br><em>끝까지</em> 함께 만들었습니다</h3>
+          <p class="ps-content-body">공기가 매우 촉박한 상황이었습니다. 기존 배관과 배선의 위치로 인해 가구 배치 일부를 현장에서 즉시 조정해야 했고, 사인물 부착은 시공팀과 직접 함께 진행했습니다. 현장에서 발생하는 모든 변수를 설계 의도 범위 안에서 해결하며 완성했습니다.</p>
+          <div class="ps-detail-grid">
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">현장 감리</div>
+              <p>매일 현장 방문 — 시공팀과 직접 소통하며 설계 의도 전달 및 즉각 조정</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">변수 대응</div>
+              <p>기존 배관 위치로 인한 가구 이동 필요 → 가이드라인 내 대안 배치 즉시 제안</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">사이니지 직접 시공</div>
+              <p>반장님들과 함께 세계지도 및 사인물 직접 부착 — 정밀한 위치 확인</p>
+            </div>
+            <div class="ps-detail-card">
+              <div class="ps-detail-card-label">완공 기념</div>
+              <p>공기 촉박 속 24일 완공 — 반장님들과의 협업이 가장 기억에 남는 현장</p>
+            </div>
+          </div>
+          <div class="ps-insight">
+            <div class="ps-insight-icon">→</div>
+            <p>공기가 촉박해 반장님들과 함께 사인물을 직접 부착했습니다. 그래서인지 이 공간에 대한 애착이 특별히 남습니다.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-sec rv">
+    <div class="section-label">Result</div>
+    <h2 class="section-title" style="margin-bottom:0;">24일의 결과물</h2>
+
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="result-num">24<sup>일</sup></div>
+        <div class="result-desc">설계부터 완공까지<br>촉박한 일정 준수</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">528<sup>㎡</sup></div>
+        <div class="result-desc">글로벌 수준으로<br>탈바꿈한 면적</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">↑</div>
+        <div class="result-desc">직원 만족도 향상<br>업무 스트레스 감소</div>
+      </div>
+    </div>
+
+    <div class="result-quote">
+      <p>복도 동선이 명확해지니 민원 동선이 겹치지 않아요. 업무 흐름이 훨씬 매끄러워서 스트레스가 줄었다는 평가를 받았습니다.</p>
+      <cite>— 입주 후 직원 피드백 / 배인형 회고</cite>
+    </div>
+  </div>
+
+</div>
+
+<!-- Next Project -->
+<div class="next-project">
+  <div class="next-inner">
+    <div>
+      <div class="next-label">Back to Portfolio</div>
+      <div class="next-title"><em>모든 프로젝트</em> 보기</div>
+    </div>
+    <a href="./index.html" class="next-link">
+      Go to Portfolio
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="ft-copy">© 2025 Bae Inhyung. All rights reserved.</div>
+  <div class="ft-copy">KTR 글로벌본부 업무공간 리모델링 — Case Study</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
