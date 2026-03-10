@@ -126,6 +126,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .mq { padding: clamp(2rem, 2.78vw, 4rem) 0; overflow: hidden; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
 .mq-track { display: flex; width: max-content; animation: mqScroll 35s linear infinite; }
 @keyframes mqScroll { to { transform: translateX(-50%); } }
+    .mq-track.mq-reverse { animation: mqScrollRev 35s linear infinite; }
+@keyframes mqScrollRev { to { transform: translateX(50%); } }
+.mq-track span.or { color: #FF5C00; }
+.mq-reverse span { font-size: var(--fP); }
 .mq-track span { font-family: var(--serif); font-size: var(--fM); white-space: nowrap; padding: 0 clamp(0.6rem, 1.04vw, 1.5rem); color: rgba(0,0,0,0.05); font-weight: 400; }
 .mq-track span.on { color: var(--white); font-style: italic; }
 .mq-track span.bl { color: var(--blue2); }
@@ -590,25 +594,40 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
     </div>
   </div>
 </section>
+
 <!-- MARQUEE -->
 <div class="mq">
   <div class="mq-track">
-    <span class="on">Interior</span><span class="dot">·</span>
-    <span>Set Design</span><span class="dot">·</span>
-    <span class="bl">Remodeling</span><span class="dot">·</span>
-    <span>Architecture</span><span class="dot">·</span>
-    <span class="on">Space Design</span><span class="dot">·</span>
-    <span>Branding</span><span class="dot">·</span>
-    <span class="bl">Interior</span><span class="dot">·</span>
-    <span>Graphic Design</span><span class="dot">·</span>
-    <span class="on">Interior</span><span class="dot">·</span>
-    <span>Set Design</span><span class="dot">·</span>
-    <span class="bl">Remodeling</span><span class="dot">·</span>
-    <span>Architecture</span><span class="dot">·</span>
-    <span class="on">Space Design</span><span class="dot">·</span>
-    <span>Branding</span><span class="dot">·</span>
-    <span class="bl">Interior</span><span class="dot">·</span>
-    <span>Graphic Design</span><span class="dot">·</span>
+    <span class="on">Interior</span><span class="dot">✦</span>
+    <span>Set Design</span><span class="dot">✦</span>
+    <span class="bl">Remodeling</span><span class="dot">✦</span>
+    <span>Architecture</span><span class="dot">✦</span>
+    <span class="on">Space Design</span><span class="dot">✦</span>
+    <span>Branding</span><span class="dot">✦</span>
+    <span class="or">Graphic Design</span><span class="dot">✦</span>
+    <span class="on">Interior</span><span class="dot">✦</span>
+    <span>Set Design</span><span class="dot">✦</span>
+    <span class="bl">Remodeling</span><span class="dot">✦</span>
+    <span>Architecture</span><span class="dot">✦</span>
+    <span class="on">Space Design</span><span class="dot">✦</span>
+    <span>Branding</span><span class="dot">✦</span>
+    <span class="or">Graphic Design</span><span class="dot">✦</span>
+  </div>
+  <div class="mq-track mq-reverse">
+    <span>Interior</span><span class="dot">✦</span>
+    <span class="or">Set Design</span><span class="dot">✦</span>
+    <span>Remodeling</span><span class="dot">✦</span>
+    <span class="on">Architecture</span><span class="dot">✦</span>
+    <span>Space Design</span><span class="dot">✦</span>
+    <span class="or">Branding</span><span class="dot">✦</span>
+    <span>Graphic Design</span><span class="dot">✦</span>
+    <span>Interior</span><span class="dot">✦</span>
+    <span class="or">Set Design</span><span class="dot">✦</span>
+    <span>Remodeling</span><span class="dot">✦</span>
+    <span class="on">Architecture</span><span class="dot">✦</span>
+    <span>Space Design</span><span class="dot">✦</span>
+    <span class="or">Branding</span><span class="dot">✦</span>
+    <span>Graphic Design</span><span class="dot">✦</span>
   </div>
 </div>
   <!-- Works -->
