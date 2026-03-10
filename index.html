@@ -1006,4 +1006,15 @@ const countObs = new IntersectionObserver(entries => {
         current += step;
         if (current >= target) {
           current = target;
-          clearInterval(inte
+         clearInterval(interval);
+        }
+        el.innerHTML = current + suffix;
+      }, 50);
+      countObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.exp-num[data-count]').forEach(el => countObs.observe(el));
+</script>
+</body>
+</html>
