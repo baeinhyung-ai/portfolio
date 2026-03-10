@@ -827,7 +827,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="cta-item">
         <div class="cta-l">E-Mail</div>
-        <div class="cta-v"><a href="mailto:sky8298@naver.com">sky8298@naver.com</a></div>
+        <div class="cta-v"><a href="/cdn-cgi/l/email-protection#24574f5d1c161d1c644a455241560a474b49"><span class="__cf_email__" data-cfemail="e4978f9ddcd6dddca48a85928196ca878b89">[email&#160;protected]</span></a></div>
       </div>
       <div class="cta-item">
         <div class="cta-l">Education</div>
@@ -850,7 +850,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <span>Space Design Portfolio</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Loader
 let pct = 0;
 const pctEl = document.getElementById('lPct');
@@ -878,6 +878,20 @@ document.querySelectorAll('.n-links a').forEach(a => {
     document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+// Save scroll position when clicking project detail links
+document.querySelectorAll('a.pj-link[href]:not([href="#"])').forEach(a => {
+  a.addEventListener('click', () => {
+    sessionStorage.setItem('portfolioScrollY', window.scrollY);
+  });
+});
+
+// Restore scroll position when returning from detail page
+const restoreY = sessionStorage.getItem('restoreScrollY');
+if (restoreY !== null) {
+  sessionStorage.removeItem('restoreScrollY');
+  setTimeout(() => window.scrollTo({ top: parseInt(restoreY), behavior: 'instant' }), 150);
+}
 
 // Nav show/hide
 const nLogo = document.querySelector('.n-logo');
@@ -992,15 +1006,4 @@ const countObs = new IntersectionObserver(entries => {
         current += step;
         if (current >= target) {
           current = target;
-          clearInterval(interval);
-        }
-        el.innerHTML = current + suffix;
-      }, 50);
-      countObs.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.exp-num').forEach(el => countObs.observe(el));
-</script>
-</body>
-</html>
+          clearInterval(inte
