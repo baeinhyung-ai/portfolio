@@ -136,38 +136,71 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .works-title { font-family: var(--serif); font-weight: 400; font-size: var(--f1); line-height: 1; letter-spacing: -0.02em; }
 .works-title em { font-style: italic; color: var(--blue2); }
 .works-sub { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.2em; margin-top: clamp(0.8rem, 1.04vw, 1.5rem); }
-.pj { margin-bottom: clamp(6rem, 11.11vw, 16rem); position: relative; opacity: 0; transform: translateY(clamp(40px, 5.56vw, 80px)); transition: all 1.1s cubic-bezier(0.25,1,0.5,1); }
+.pj { margin-bottom: clamp(4rem, 6.94vw, 10rem); position: relative; opacity: 0; transform: translateY(clamp(40px, 5.56vw, 80px)); transition: all 1.1s cubic-bezier(0.25,1,0.5,1); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(2rem, 2.78vw, 4rem); align-items: start; }
 .pj.v { opacity: 1; transform: translateY(0); }
-.pj-img { width: 100%; aspect-ratio: 16/9; background: linear-gradient(150deg, #eae9e4, #e0dfd9, #eae9e4); border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: border-color 0.5s; }
-.pj-img::after { content: attr(data-label); font-family: var(--serif); font-size: clamp(0.88rem, 0.83vw, 1.2rem); font-style: italic; color: rgba(0,0,0,0.06); letter-spacing: 0.1em; text-align: center; padding: 0 var(--g-md); }
-.pj-img .tag { position: absolute; top: clamp(0.8rem, 1.04vw, 1.5rem); left: clamp(0.8rem, 1.04vw, 1.5rem); font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.2em; text-transform: uppercase; background: var(--blue); color: #fff; padding: clamp(0.2rem, 0.24vw, 0.35rem) clamp(0.4rem, 0.52vw, 0.75rem); }
+.pj-img { width: 100%; aspect-ratio: 3/2; background: linear-gradient(150deg, #eae9e4, #e0dfd9, #eae9e4); border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; display: flex; align-items: flex-end; transition: border-color 0.5s; }
+.pj-img .tag { position: absolute; top: clamp(0.8rem, 1.04vw, 1.5rem); left: clamp(0.8rem, 1.04vw, 1.5rem); font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.2em; text-transform: uppercase; background: var(--blue); color: #fff; padding: clamp(0.2rem, 0.24vw, 0.35rem) clamp(0.4rem, 0.52vw, 0.75rem); z-index: 2; }
 .pj-img:hover { border-color: rgba(51,85,255,0.15); }
-.pj-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 2.78vw, 4rem); margin-top: clamp(1.5rem, 2.08vw, 3rem); align-items: start; }
-.pj-body .pj-cat { font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.35em; text-transform: uppercase; color: var(--blue2); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
-.pj-body h3 { font-family: var(--serif); font-weight: 400; font-size: var(--f3); line-height: 1.15; letter-spacing: -0.01em; }
-.pj-body h3 em { font-style: italic; }
-.pj-body .pj-meta { display: flex; flex-wrap: wrap; gap: clamp(0.8rem, 1.04vw, 1.5rem); margin-top: clamp(0.8rem, 1.04vw, 1.5rem); }
-.pj-body .pj-meta span { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: clamp(0.25rem, 0.35vw, 0.5rem); }
-.pj-body .pj-meta span::before { content: ''; width: clamp(3px, 0.28vw, 4px); height: clamp(3px, 0.28vw, 4px); border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-.pj-body .pj-desc { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2; color: var(--white2); margin-bottom: clamp(1rem, 1.39vw, 2rem); }
-.pj-body .pj-link { display: inline-flex; align-items: center; gap: clamp(0.6rem, 0.83vw, 1.2rem); text-decoration: none; color: #fff; background: var(--white); font-family: var(--sans); font-size: var(--fs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: clamp(0.7rem, 0.97vw, 1.4rem) clamp(1.2rem, 1.67vw, 2.4rem); position: relative; overflow: hidden; transition: color 0.35s, gap 0.35s; }
-.pj-body .pj-link::before { content: ''; position: absolute; inset: 0; background: var(--blue); transform: translateX(-101%); transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0; }
+.pj-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,15,0.75) 0%, rgba(10,10,15,0.2) 50%, transparent 100%); z-index: 1; }
+.pj-img-text { position: relative; z-index: 2; padding: clamp(1.2rem, 1.74vw, 2.5rem); width: 100%; }
+.pj-img-text .pj-cat { font-family: var(--mono); font-size: var(--fx); letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: clamp(0.4rem, 0.56vw, 0.8rem); }
+.pj-img-text h3 { font-family: var(--serif); font-weight: 400; font-size: var(--f3); line-height: 1.15; letter-spacing: -0.01em; color: #fff; margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.pj-img-text h3 em { font-style: italic; color: rgba(255,255,255,0.75); }
+.pj-img-text .pj-meta { display: flex; flex-wrap: wrap; gap: clamp(0.6rem, 0.83vw, 1.2rem); }
+.pj-img-text .pj-meta span { font-family: var(--mono); font-size: var(--fx); color: rgba(255,255,255,0.5); letter-spacing: 0.05em; display: flex; align-items: center; gap: clamp(0.25rem, 0.35vw, 0.5rem); }
+.pj-img-text .pj-meta span::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+.pj-body { display: flex; flex-direction: column; gap: clamp(1rem, 1.39vw, 2rem); justify-content: space-between; padding-top: clamp(0.5rem, 0.69vw, 1rem); align-self: stretch; }
+.pj-body-top { display: flex; flex-direction: column; gap: clamp(1rem, 1.39vw, 2rem); }
+.pj-infographic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); padding: clamp(1rem, 1.39vw, 2rem) 0; }
+.pj-info-item { display: flex; flex-direction: column; gap: 0.3rem; padding: 0 clamp(0.8rem, 1.04vw, 1.5rem); border-right: 1px solid rgba(0,0,0,0.08); }
+.pj-info-item:first-child { padding-left: 0; }
+.pj-info-item:last-child { border-right: none; }
+.pj-info-item .info-val { font-family: var(--serif); font-style: italic; font-size: clamp(1.6rem, 2.08vw, 3rem); color: var(--blue); line-height: 1; letter-spacing: -0.02em; }
+.pj-info-item .info-label { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase; }
+.pj-body .pj-desc { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2; color: var(--white2); margin-bottom: clamp(0.5rem, 0.69vw, 1rem); }
+.pj-body .pj-link { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #fff; background: #4a4a52; font-family: var(--kr); font-size: var(--fs); font-weight: 500; letter-spacing: 0.05em; width: clamp(120px, 13.89vw, 200px); height: clamp(44px, 4.17vw, 60px); border-radius: 999px; position: relative; overflow: hidden; transition: color 0.35s; }
+.pj-body .pj-link::before { content: ''; position: absolute; inset: 0; background: var(--blue); border-radius: 999px; transform: translateX(-101%); transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0; }
 .pj-body .pj-link:hover::before { transform: translateX(0); }
-    .pj-body .pj-link .link-hover-text { position: absolute; right: clamp(1.2rem, 1.67vw, 2.4rem); font-size: var(--fx); letter-spacing: 0.15em; opacity: 0; transform: translateY(6px); transition: opacity 0.25s 0.1s, transform 0.25s 0.1s; z-index: 1; white-space: nowrap; }
-.pj-body .pj-link:hover .link-hover-text { opacity: 1; transform: translateY(0); }
-.pj-body .pj-link:hover { gap: clamp(1rem, 1.39vw, 2rem); }
-.pj-body .pj-link span, .pj-body .pj-link .arr { position: relative; z-index: 1; }
-.pj-body .pj-link .arr { width: clamp(18px, 1.94vw, 28px); height: 1px; background: currentColor; position: relative; transition: width 0.35s; z-index: 1; flex-shrink: 0; }
-.pj-body .pj-link:hover .arr { width: clamp(28px, 3.06vw, 44px); }
-.pj-body .pj-link .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: rotate(45deg); }
-.pj-body .pj-link[href="#"] { background: rgba(26,26,31,0.15); color: rgba(26,26,31,0.35); pointer-events: none; }
+.pj-body .pj-link .btn-default { position: absolute; z-index: 1; display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s, transform 0.2s; }
+.pj-body .pj-link .btn-default .arr { width: clamp(16px, 1.67vw, 24px); height: 1px; background: currentColor; position: relative; flex-shrink: 0; }
+.pj-body .pj-link .btn-default .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: rotate(45deg); }
+.pj-body .pj-link .btn-hover { position: absolute; z-index: 1; opacity: 0; transform: translateY(8px); transition: opacity 0.2s 0.08s, transform 0.2s 0.08s; display: flex; align-items: center; gap: 0.5rem; }
+.pj-body .pj-link .btn-hover .arr { width: clamp(16px, 1.67vw, 24px); height: 1px; background: currentColor; position: relative; flex-shrink: 0; display: inline-block; }
+.pj-body .pj-link .btn-hover .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: rotate(45deg); }
+.pj-body .pj-link:hover .btn-default { opacity: 0; transform: translateY(-8px); }
+.pj-body .pj-link:hover .btn-hover { opacity: 1; transform: translateY(0); }
+.pj-body .pj-link[href="#"] { background: rgba(26,26,31,0.1); color: rgba(26,26,31,0.25); pointer-events: none; }
 .pj-body .pj-link[href="#"]::before { display: none; }
-.pj-thumbs { display: flex; gap: clamp(0.5rem, 0.69vw, 1rem); margin-top: clamp(1.5rem, 2.08vw, 3rem); overflow-x: auto; scrollbar-width: none; }
-.pj-thumbs::-webkit-scrollbar { display: none; }
-.pj-thumbs .th { flex-shrink: 0; width: clamp(140px, 15.28vw, 220px); height: clamp(90px, 9.72vw, 140px); background: #e8e7e2; border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: var(--fx); color: rgba(0,0,0,0.08); letter-spacing: 0.15em; text-transform: uppercase; transition: border-color 0.4s; }
+.pj-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.4rem, 0.56vw, 0.8rem); margin-top: clamp(1rem, 1.39vw, 2rem); }
+.pj-thumbs .th { aspect-ratio: 4/3; background: #e8e7e2; border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: var(--fx); color: rgba(0,0,0,0.08); letter-spacing: 0.15em; text-transform: uppercase; transition: border-color 0.4s; }
 .pj-thumbs .th:hover { border-color: rgba(42,68,232,0.25); }
 
-/* DRAMA */
+/* GALLERY SLIDER */
+.gallery-section { margin-top: clamp(5rem, 8.33vw, 12rem); }
+.gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: clamp(1.5rem, 2.08vw, 3rem); }
+.gallery-header-left { }
+.gallery-title { font-family: var(--serif); font-weight: 400; font-size: var(--f2); line-height: 1.1; letter-spacing: -0.02em; }
+.gallery-title em { font-style: italic; color: var(--blue2); }
+.gallery-sub { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.2em; margin-top: clamp(0.4rem, 0.56vw, 0.8rem); }
+.gallery-nav { display: flex; align-items: center; gap: clamp(0.8rem, 1.04vw, 1.5rem); }
+.gallery-nav-btn { width: clamp(40px, 3.47vw, 50px); height: clamp(40px, 3.47vw, 50px); border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.15); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s, border-color 0.3s; flex-shrink: 0; }
+.gallery-nav-btn:hover { background: var(--white); border-color: var(--white); }
+.gallery-nav-btn:hover svg { stroke: var(--bg); }
+.gallery-nav-btn svg { width: 16px; height: 16px; stroke: var(--white); stroke-width: 1.5; fill: none; transition: stroke 0.3s; }
+.gallery-nav-count { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.1em; white-space: nowrap; }
+.gallery-track-wrap { overflow: hidden; cursor: grab; position: relative; padding-left: clamp(2rem, 5.56vw, 8rem); }
+.gallery-track-wrap::after { content: ''; position: absolute; top: 0; right: 0; width: clamp(60px, 8vw, 120px); height: 100%; background: linear-gradient(to right, transparent, var(--bg)); pointer-events: none; z-index: 3; }
+.gallery-track-wrap:active { cursor: grabbing; }
+.gallery-track { display: grid; grid-template-rows: repeat(2, 1fr); grid-auto-flow: column; grid-auto-columns: clamp(320px, 38vw, 560px); gap: clamp(0.6rem, 0.83vw, 1.2rem); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform; }
+.gallery-card { position: relative; overflow: hidden; cursor: pointer; }
+.gallery-card-img { width: 100%; aspect-ratio: 4/3; background: linear-gradient(150deg, #e0dfd9, #d5d4ce); position: relative; overflow: hidden; }
+.gallery-card-img::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,15,0); transition: background 0.4s; }
+.gallery-card:hover .gallery-card-img::after { background: rgba(10,10,15,0.45); }
+.gallery-card-overlay { position: absolute; inset: 0; padding: clamp(0.8rem, 1.04vw, 1.5rem); display: flex; flex-direction: column; justify-content: flex-end; opacity: 0; transform: translateY(8px); transition: opacity 0.35s, transform 0.35s; z-index: 2; }
+.gallery-card:hover .gallery-card-overlay { opacity: 1; transform: translateY(0); }
+.gallery-card-cat { font-family: var(--mono); font-size: var(--fxx); letter-spacing: 0.2em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 0.3rem; }
+.gallery-card-title { font-family: var(--kr); font-size: clamp(0.75rem, 0.83vw, 1.1rem); font-weight: 600; color: #fff; line-height: 1.4; }
+.gallery-card-info { display: none; }
 .drama-feature { background: var(--white); color: var(--bg); padding: 0; overflow: hidden; }
 .drama-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: var(--py) var(--px); position: relative; }
 .drama-hero .lbl { color: var(--blue); }
@@ -205,13 +238,16 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .brand-feature .pj-img { background: linear-gradient(150deg, #e6dbc8, #ddd0ba, #e6dbc8); border-color: rgba(0,0,0,0.06); }
 .brand-feature .pj-img::after { color: rgba(0,0,0,0.06); }
 .brand-feature .pj-img .tag { background: #9c6030; color: #fff; }
-.brand-feature .pj-cat { color: #9c6030 !important; }
-.brand-feature .pj-body h3 { color: #2a2520; }
-.brand-feature .pj-body h3 em { color: #9c6030; }
-.brand-feature .pj-meta span { color: #8a7a6a; }
-.brand-feature .pj-meta span::before { background: #9c6030; }
+.brand-feature .pj-infographic { border-color: rgba(42,37,32,0.1); }
+.brand-feature .pj-info-item { border-color: rgba(42,37,32,0.1); }
+.brand-feature .pj-info-item .info-val { color: #9c6030; }
+.brand-feature .pj-img-overlay { background: linear-gradient(to top, rgba(42,37,32,0.8) 0%, rgba(42,37,32,0.2) 50%, transparent 100%); }
+.brand-feature .pj-img-text h3 { color: #fff; }
+.brand-feature .pj-img-text .pj-cat { color: rgba(255,255,255,0.6); }
+.brand-feature .pj-img-text .pj-meta span { color: rgba(255,255,255,0.5); }
+.brand-feature .pj-img-text .pj-meta span::before { background: #9c6030; }
 .brand-feature .pj-desc { color: rgba(42,37,32,0.55); }
-.brand-feature .pj-link { color: #fff; background: #2a2520; }
+.brand-feature .pj-link { color: #fff; background: #5a4535; }
 .brand-feature .pj-link::before { background: #9c6030; }
 .brand-feature .pj-link:hover { color: #fff; }
 .brand-feature .pj-thumbs .th { background: #e2d6c2; border-color: rgba(0,0,0,0.06); color: rgba(42,37,32,0.12); }
@@ -297,7 +333,8 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   .hero-letter-content { max-width: 100%; }
   .hero-letter-sub { max-width: 100%; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .pj-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  .pj { grid-template-columns: 1fr; gap: 1.5rem; }
+  .pj-body { gap: 1rem; }
   .exp-grid { grid-template-columns: 1fr; gap: 3rem; }
   .cta-grid { grid-template-columns: 1fr; }
   .drama-process-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -545,11 +582,10 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
 
   <!-- 01 -->
   <div class="pj">
-    <div class="pj-img" data-label="KTR Brand Identity — 전국 17개 기관 상담창구 표준화">
+    <div class="pj-img">
       <div class="tag">Featured</div>
-    </div>
-    <div class="pj-body">
-      <div class="pj-left">
+      <div class="pj-img-overlay"></div>
+      <div class="pj-img-text">
         <div class="pj-cat">Brand Identity · Commercial Space</div>
         <h3>KTR <em>브랜드</em><br>아이덴티티 구축</h3>
         <div class="pj-meta">
@@ -557,43 +593,30 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
           <span>전국 17개 기관</span>
         </div>
       </div>
-      <div class="pj-right">
+    </div>
+    <div class="pj-body">
+      <div class="pj-body-top">
         <p class="pj-desc">디자인 가이드라인이 부재했던 KTR의 전국 17개 기관 상담창구를 표준화하여 고객이 어디서든 일관된 브랜드 경험을 할 수 있도록 설계했습니다. 업무 효율성과 브랜드 경험을 동시에 개선하는 것을 목표로 임했습니다.</p>
-        <a href="./ktr-brand.html" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span>
-        <div class="pj-thumbs">
-          <div class="th">상담창구</div>
-          <div class="th">가이드라인</div>
-          <div class="th">컬러시스템</div>
-          <div class="th">사인시스템</div>
-        </div>
+        <a href="./ktr-brand.html" class="pj-link"><span class="btn-default">작업과정 <span class="arr"></span></span><span class="btn-hover">작업과정 <span class="arr"></span></span></a>
+      </div>
+      <div class="pj-infographic">
+        <div class="pj-info-item"><div class="info-val">17</div><div class="info-label">전국 기관</div></div>
+        <div class="pj-info-item"><div class="info-val">2yr</div><div class="info-label">프로젝트 기간</div></div>
+        <div class="pj-info-item"><div class="info-val">100%</div><div class="info-label">표준화 달성</div></div>
+      </div>
+      <div class="pj-thumbs">
+        <div class="th">상담창구</div>
+        <div class="th">가이드라인</div>
+        <div class="th">사인시스템</div>
       </div>
     </div>
   </div>
 
-  <!-- 02 -->
+  <!-- 02 글로벌본부 -->
   <div class="pj">
-    <div class="pj-img" data-label="KTR 교육공간 리모델링 — 동해홀 242.35㎡"></div>
-    <div class="pj-body">
-      <div class="pj-left">
-        <div class="pj-cat">Education · Remodeling</div>
-        <h3><em>교육공간</em><br>리모델링</h3>
-        <div class="pj-meta">
-          <span>242.35㎡ (70py)</span>
-          <span>공사기간 30일</span>
-        </div>
-      </div>
-      <div class="pj-right">
-        <p class="pj-desc">KTR 과천청사의 동해홀 리모델링. 노후된 가구와 비효율적 동선 문제를 방음과 조도를 고려한 설계로 해결하여, 청사 내부 다른 교육장의 표준 모델로 선정되었습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 03 -->
-  <div class="pj">
-    <div class="pj-img" data-label="글로벌본부 업무공간 리모델링 — 528.9㎡"></div>
-    <div class="pj-body">
-      <div class="pj-left">
+    <div class="pj-img">
+      <div class="pj-img-overlay"></div>
+      <div class="pj-img-text">
         <div class="pj-cat">Office · Remodeling</div>
         <h3>글로벌본부<br><em>업무공간</em> 리모델링</h3>
         <div class="pj-meta">
@@ -601,50 +624,179 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
           <span>공사기간 24일</span>
         </div>
       </div>
-      <div class="pj-right">
+    </div>
+    <div class="pj-body">
+      <div class="pj-body-top">
         <p class="pj-desc">좁은 좌석 간격과 노후된 가구 환경을 개선해 글로벌 기업 수준의 근무환경을 구현. 멀티미디어 장비와 브랜드 이미지를 효과적으로 담아낸 공간으로 설계했습니다.</p>
-        <a href="./ktr-global.html" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
+        <a href="./ktr-global.html" class="pj-link"><span class="btn-default">작업과정 <span class="arr"></span></span><span class="btn-hover">작업과정 <span class="arr"></span></span></a>
+      </div>
+      <div class="pj-infographic">
+        <div class="pj-info-item"><div class="info-val">160py</div><div class="info-label">시공 면적</div></div>
+        <div class="pj-info-item"><div class="info-val">24일</div><div class="info-label">공사 기간</div></div>
+        <div class="pj-info-item"><div class="info-val">528㎡</div><div class="info-label">연면적</div></div>
+      </div>
+      <div class="pj-thumbs">
+        <div class="th">평면 설계</div>
+        <div class="th">가구 계획</div>
+        <div class="th">완공 사진</div>
       </div>
     </div>
   </div>
 
-  <!-- 04 -->
-  <div class="pj">
-    <div class="pj-img" data-label="시흥 바이오특화연구소 조감도 — 4,800py"></div>
-    <div class="pj-body">
-      <div class="pj-left">
-        <div class="pj-cat">Exterior · Aerial Rendering</div>
-        <h3>시흥 <em>바이오특화</em><br>연구소 조감도</h3>
-        <div class="pj-meta">
-          <span>4,800py</span>
-          <span>완공 예정 2028</span>
-        </div>
+  <!-- 갤러리 슬라이더 -->
+  <div class="gallery-section rv">
+    <div class="gallery-header">
+      <div class="gallery-header-left">
+        <div class="gallery-title">More <em>Works</em></div>
+        <div class="gallery-sub">Space · 3D · Graphic — 10 Projects</div>
       </div>
-      <div class="pj-right">
-        <p class="pj-desc">연면적 4,800평 규모의 조감도를 설계. 현대적 파사드와 KTR 브랜드 아이덴티티를 반영한 외관으로 첨단 바이오 거점 이미지를 구현하고, 시흥의 녹지와 어우러진 조경 계획을 반영했습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
+      <div class="gallery-nav">
+        <div class="gallery-nav-count"><span id="galCur">1</span> — <span id="galTotal">10</span></div>
+        <button class="gallery-nav-btn" id="galPrev" aria-label="prev">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="gallery-nav-btn" id="galNext" aria-label="next">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="gallery-track-wrap" id="galWrap">
+      <div class="gallery-track" id="galTrack">
+
+        <!-- card 01 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Education · Remodeling</div>
+            <div class="gallery-card-title">교육공간 리모델링</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">동해홀 리모델링</div>
+            <div class="gallery-card-info-meta">242.35㎡ · 공사기간 30일</div>
+          </div>
+        </div>
+
+        <!-- card 02 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Exterior · Rendering</div>
+            <div class="gallery-card-title">시흥 바이오특화 연구소 조감도</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">바이오특화 연구소</div>
+            <div class="gallery-card-info-meta">4,800py · 완공 예정 2028</div>
+          </div>
+        </div>
+
+        <!-- card 03 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Office · New Build</div>
+            <div class="gallery-card-title">탄소중립화학규제지원본부 신축</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">탄소중립본부 신축</div>
+            <div class="gallery-card-info-meta">228py · 설계 및 감리</div>
+          </div>
+        </div>
+
+        <!-- card 04 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Office · Remodeling</div>
+            <div class="gallery-card-title">심층상담소 리모델링</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">심층상담소</div>
+            <div class="gallery-card-info-meta">123py · 과천청사</div>
+          </div>
+        </div>
+
+        <!-- card 05 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Office · Remodeling</div>
+            <div class="gallery-card-title">스마트랩 리모델링</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">스마트랩</div>
+            <div class="gallery-card-info-meta">46py · 첨단 연구환경</div>
+          </div>
+        </div>
+
+        <!-- card 06 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">3D Modeling · Visualization</div>
+            <div class="gallery-card-title">3D 공간 모델링</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">3D Design</div>
+            <div class="gallery-card-info-meta">SketchUp · Enscape · D5</div>
+          </div>
+        </div>
+
+        <!-- card 07 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Graphic · Brand</div>
+            <div class="gallery-card-title">ESG 성과보고서 디자인</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">ESG 보고서</div>
+            <div class="gallery-card-info-meta">그래픽 디자인 · 편집</div>
+          </div>
+        </div>
+
+        <!-- card 08 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Graphic · Motion</div>
+            <div class="gallery-card-title">56주년 홍보영상</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">홍보영상</div>
+            <div class="gallery-card-info-meta">After Effects · Premiere</div>
+          </div>
+        </div>
+
+        <!-- card 09 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">Graphic · Signage</div>
+            <div class="gallery-card-title">거제 휴양소 외벽 디자인</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">거제 휴양소</div>
+            <div class="gallery-card-info-meta">외벽 그래픽 · 사인시스템</div>
+          </div>
+        </div>
+
+        <!-- card 10 -->
+        <div class="gallery-card" onclick="location.href='#'">
+          <div class="gallery-card-img"></div>
+          <div class="gallery-card-overlay">
+            <div class="gallery-card-cat">UI · Platform</div>
+            <div class="gallery-card-title">상담 플랫폼 UI 디자인</div>
+          </div>
+          <div class="gallery-card-info">
+            <div class="gallery-card-info-name">상담 플랫폼</div>
+            <div class="gallery-card-info-meta">UI Design · Figma</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- 05 -->
-  <div class="pj">
-    <div class="pj-img" data-label="탄소중립화학규제지원본부 — 신축 228py"></div>
-    <div class="pj-body">
-      <div class="pj-left">
-        <div class="pj-cat">Office · New Build</div>
-        <h3><em>탄소중립</em>화학규제<br>지원본부 신축</h3>
-        <div class="pj-meta">
-          <span>228py</span>
-          <span>설계 및 감리</span>
-        </div>
-      </div>
-      <div class="pj-right">
-        <p class="pj-desc">KTR 탄소중립화학규제지원본부 신축 프로젝트. 새롭게 신설되는 본부의 업무 환경을 처음부터 설계하여, 조직 특성에 맞는 효율적인 공간 구성과 브랜드 아이덴티티를 반영한 오피스를 구축했습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- 빨간풍선 Drama Feature -->
@@ -763,11 +915,10 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <div class="brand-projects">
     <!-- Math TWO -->
     <div class="pj">
-      <div class="pj-img" data-label="Math TWO — AI OCR 교육 앱 UI 디자인">
+      <div class="pj-img">
         <div class="tag">UI/UX</div>
-      </div>
-      <div class="pj-body">
-        <div class="pj-left">
+        <div class="pj-img-overlay"></div>
+        <div class="pj-img-text">
           <div class="pj-cat">UI Design · Application</div>
           <h3><em>Math TWO</em><br>교육 앱 디자인</h3>
           <div class="pj-meta">
@@ -775,26 +926,31 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
             <span>㈜해피에듀테크</span>
           </div>
         </div>
-        <div class="pj-right">
-          <p class="pj-desc">AI OCR 기술을 활용한 양방향 소통 교육 앱의 UI 디자인 및 브랜딩을 담당. User Journey Mapping, Wireframe, Prototype 디자인을 수행하여 AppStore와 Google Play에 성공적으로 런칭했습니다. 대구스타트업리더스포럼 IR 피칭을 위한 인터랙션 부스도 제작했습니다.</p>
-          <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
-          <div class="pj-thumbs">
-            <div class="th">UI 디자인</div>
-            <div class="th">와이어프레임</div>
-            <div class="th">프로토타입</div>
-            <div class="th">부스 디자인</div>
-          </div>
+      </div>
+      <div class="pj-body">
+        <div class="pj-body-top">
+          <p class="pj-desc">AI OCR 기술을 활용한 양방향 소통 교육 앱의 UI 디자인 및 브랜딩을 담당. User Journey Mapping, Wireframe, Prototype 디자인을 수행하여 AppStore와 Google Play에 성공적으로 런칭했습니다.</p>
+          <a href="#" class="pj-link"><span class="btn-default">작업과정 <span class="arr"></span></span><span class="btn-hover">작업과정 <span class="arr"></span></span></a>
+        </div>
+        <div class="pj-infographic">
+          <div class="pj-info-item"><div class="info-val">2개</div><div class="info-label">앱 스토어 런칭</div></div>
+          <div class="pj-info-item"><div class="info-val">1yr</div><div class="info-label">프로젝트 기간</div></div>
+          <div class="pj-info-item"><div class="info-val">UI/UX</div><div class="info-label">디자인 전담</div></div>
+        </div>
+        <div class="pj-thumbs">
+          <div class="th">UI 디자인</div>
+          <div class="th">와이어프레임</div>
+          <div class="th">프로토타입</div>
         </div>
       </div>
     </div>
 
     <!-- KTR 캐릭터 -->
     <div class="pj">
-      <div class="pj-img" data-label="KTR 캐릭터 디자인 — 브랜드 마스코트">
+      <div class="pj-img">
         <div class="tag">Character</div>
-      </div>
-      <div class="pj-body">
-        <div class="pj-left">
+        <div class="pj-img-overlay"></div>
+        <div class="pj-img-text">
           <div class="pj-cat">Character · Brand Identity</div>
           <h3>KTR <em>캐릭터</em><br>디자인</h3>
           <div class="pj-meta">
@@ -802,14 +958,21 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
             <span>브랜드 마스코트</span>
           </div>
         </div>
-        <div class="pj-right">
+      </div>
+      <div class="pj-body">
+        <div class="pj-body-top">
           <p class="pj-desc">KTR의 브랜드 아이덴티티를 강화하기 위한 캐릭터 디자인 프로젝트. 조직의 전문성과 친근함을 동시에 전달하는 마스코트를 개발하여 사내외 커뮤니케이션에 활용했습니다.</p>
-          <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
-          <div class="pj-thumbs">
-            <div class="th">캐릭터 시안</div>
-            <div class="th">응용 디자인</div>
-            <div class="th">굿즈 적용</div>
-          </div>
+          <a href="#" class="pj-link"><span class="btn-default">작업과정 <span class="arr"></span></span><span class="btn-hover">작업과정 <span class="arr"></span></span></a>
+        </div>
+        <div class="pj-infographic">
+          <div class="pj-info-item"><div class="info-val">캐릭터</div><div class="info-label">마스코트 개발</div></div>
+          <div class="pj-info-item"><div class="info-val">굿즈</div><div class="info-label">응용 디자인</div></div>
+          <div class="pj-info-item"><div class="info-val">BI</div><div class="info-label">브랜드 아이덴티티</div></div>
+        </div>
+        <div class="pj-thumbs">
+          <div class="th">캐릭터 시안</div>
+          <div class="th">응용 디자인</div>
+          <div class="th">굿즈 적용</div>
         </div>
       </div>
     </div>
@@ -1001,7 +1164,53 @@ document.querySelectorAll('.exp-row').forEach(row => {
   });
 });
 
-// Count-up animation
+// Gallery Slider
+const galTrack = document.getElementById('galTrack');
+const galWrap = document.getElementById('galWrap');
+const galPrev = document.getElementById('galPrev');
+const galNext = document.getElementById('galNext');
+const galCurEl = document.getElementById('galCur');
+const galTotalEl = document.getElementById('galTotal');
+
+if (galTrack) {
+  const cards = galTrack.querySelectorAll('.gallery-card');
+  const totalCols = Math.ceil(cards.length / 2); // 2행이므로 컬럼 수
+  if (galTotalEl) galTotalEl.textContent = totalCols;
+  let current = 0;
+
+  function getColWidth() {
+    const style = getComputedStyle(galTrack);
+    const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 12;
+    const colW = parseFloat(style.gridAutoColumns) || (cards[0] ? cards[0].offsetWidth : 0);
+    return colW + gap;
+  }
+
+  function moveTo(idx) {
+    current = Math.max(0, Math.min(idx, totalCols - 1));
+    galTrack.style.transform = `translateX(-${current * getColWidth()}px)`;
+    if (galCurEl) galCurEl.textContent = current + 1;
+  }
+
+  galNext?.addEventListener('click', () => moveTo(current + 1));
+  galPrev?.addEventListener('click', () => moveTo(current - 1));
+
+  let startX = 0, isDragging = false;
+  galWrap.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; galTrack.style.transition = 'none'; });
+  window.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    galTrack.style.transition = 'transform 0.5s cubic-bezier(0.25,1,0.5,1)';
+    const diff = startX - e.clientX;
+    if (Math.abs(diff) > 50) moveTo(diff > 0 ? current + 1 : current - 1);
+    isDragging = false;
+  });
+  galWrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  galWrap.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) moveTo(diff > 0 ? current + 1 : current - 1);
+  });
+}
+
+
 const countObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
