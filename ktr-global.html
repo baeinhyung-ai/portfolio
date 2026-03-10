@@ -54,25 +54,6 @@ nav {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(26,26,31,0.07);
 }
-.n-back {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--dim);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  transition: color 0.25s;
-}
-.n-back:hover { color: var(--blue); }
-.n-back svg {
-  width: 14px; height: 14px;
-  stroke: currentColor; fill: none;
-  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-  transition: transform 0.25s;
-}
-.n-back:hover svg { transform: translateX(-3px); }
 .n-logo {
   font-family: var(--sans);
   font-weight: 700;
@@ -86,6 +67,79 @@ nav {
   letter-spacing: 0.12em;
   color: var(--dim);
 }
+
+/* ── FLOATING BACK BUTTON ── */
+.back-fab {
+  position: fixed;
+  left: 2rem;
+  top: calc(var(--nav-h, 68px) + 1.2rem);
+  z-index: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--bg);
+  box-shadow: 0 3px 16px rgba(26,26,31,0.16);
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.back-fab:hover {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 5px 24px rgba(42,68,232,0.32);
+  transform: scale(1.1);
+}
+.back-fab svg {
+  width: 1.2rem; height: 1.2rem;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s;
+}
+.back-fab:hover svg { transform: translateX(-2px); }
+
+/* ── BOTTOM BACK ── */
+.bottom-back {
+  border-top: 1px solid rgba(26,26,31,0.1);
+  padding: 5rem 0;
+}
+.bottom-back-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bottom-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 1.2rem 2.4rem;
+  border: 1.5px solid rgba(26,26,31,0.15);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, gap 0.25s;
+}
+.bottom-back-link:hover {
+  background: var(--white);
+  color: var(--bg);
+  border-color: var(--white);
+  gap: 1.6rem;
+}
+.bottom-back-link svg {
+  width: 1.1rem; height: 1.1rem;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s;
+}
+.bottom-back-link:hover svg { transform: translateX(-3px); }
 
 /* ── HERO ── */
 .detail-hero {
@@ -568,6 +622,7 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 1.2rem 1.5rem; }
   .n-tag { display: none; }
+  .back-fab { left: 1rem; width: 2.6rem; height: 2.6rem; }
   .detail-hero-inner { padding: 3rem 1.5rem 0; }
   .detail-hero-top { flex-direction: column; gap: 2rem; }
   .content-wrap { padding: 0 1.5rem; }
@@ -576,19 +631,20 @@ footer {
   .process-step { grid-template-columns: 1fr; gap: 2rem; }
   .ps-detail-grid { grid-template-columns: 1fr; }
   .result-grid { grid-template-columns: 1fr; }
-  .next-inner { padding: 0 1.5rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .bottom-back-inner { padding: 0 1.5rem; }
   footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- Floating Back Button -->
+<a href="./index.html" class="back-fab" title="포트폴리오로 돌아가기">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+</a>
+
 <!-- Nav -->
 <nav>
-  <a href="./index.html" class="n-back">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    Back
-  </a>
   <div class="n-logo">Bae Inhyung</div>
   <div class="n-tag">02 / KTR 글로벌본부</div>
 </nav>
@@ -851,16 +907,12 @@ footer {
 
 </div>
 
-<!-- Next Project -->
-<div class="next-project">
-  <div class="next-inner">
-    <div>
-      <div class="next-label">Back to Portfolio</div>
-      <div class="next-title"><em>모든 프로젝트</em> 보기</div>
-    </div>
-    <a href="./index.html" class="next-link">
-      Go to Portfolio
-      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+<!-- Bottom Back -->
+<div class="bottom-back">
+  <div class="bottom-back-inner">
+    <a href="./index.html" class="bottom-back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      포트폴리오로 돌아가기
     </a>
   </div>
 </div>
@@ -872,6 +924,31 @@ footer {
 </footer>
 
 <script>
+// Nav height → CSS variable for back-fab positioning
+const navEl = document.querySelector('nav');
+if (navEl) {
+  document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+  }).observe(navEl);
+}
+
+// Restore scroll position when returning from detail page
+const backFab = document.querySelector('.back-fab');
+const bottomBack = document.querySelector('.bottom-back-link');
+function goBack(e) {
+  e.preventDefault();
+  const savedY = sessionStorage.getItem('portfolioScrollY');
+  const target = this.href;
+  window.location.href = target;
+  if (savedY !== null) {
+    sessionStorage.setItem('restoreScrollY', savedY);
+  }
+}
+if (backFab) backFab.addEventListener('click', goBack);
+if (bottomBack) bottomBack.addEventListener('click', goBack);
+
+// Reveal on scroll
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
