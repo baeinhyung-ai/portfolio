@@ -150,11 +150,16 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .pj-body .pj-meta span { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: clamp(0.25rem, 0.35vw, 0.5rem); }
 .pj-body .pj-meta span::before { content: ''; width: clamp(3px, 0.28vw, 4px); height: clamp(3px, 0.28vw, 4px); border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 .pj-body .pj-desc { font-family: var(--kr); font-size: var(--fb); font-weight: 350; line-height: 2; color: var(--white2); margin-bottom: clamp(1rem, 1.39vw, 2rem); }
-.pj-body .pj-link { display: inline-flex; align-items: center; gap: clamp(0.4rem, 0.56vw, 0.8rem); text-decoration: none; color: var(--white); font-size: var(--fs); letter-spacing: 0.08em; transition: color 0.3s; }
-.pj-body .pj-link:hover { color: var(--blue); }
-.pj-body .pj-link .arr { width: clamp(20px, 2.22vw, 32px); height: 1px; background: currentColor; position: relative; transition: width 0.4s; }
-.pj-body .pj-link:hover .arr { width: clamp(32px, 3.61vw, 52px); }
-.pj-body .pj-link .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
+.pj-body .pj-link { display: inline-flex; align-items: center; gap: clamp(0.6rem, 0.83vw, 1.2rem); text-decoration: none; color: #fff; background: var(--white); font-family: var(--sans); font-size: var(--fs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: clamp(0.7rem, 0.97vw, 1.4rem) clamp(1.2rem, 1.67vw, 2.4rem); position: relative; overflow: hidden; transition: color 0.35s, gap 0.35s; }
+.pj-body .pj-link::before { content: ''; position: absolute; inset: 0; background: var(--blue); transform: translateX(-101%); transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0; }
+.pj-body .pj-link:hover::before { transform: translateX(0); }
+.pj-body .pj-link:hover { gap: clamp(1rem, 1.39vw, 2rem); }
+.pj-body .pj-link span, .pj-body .pj-link .arr { position: relative; z-index: 1; }
+.pj-body .pj-link .arr { width: clamp(18px, 1.94vw, 28px); height: 1px; background: currentColor; position: relative; transition: width 0.35s; z-index: 1; flex-shrink: 0; }
+.pj-body .pj-link:hover .arr { width: clamp(28px, 3.06vw, 44px); }
+.pj-body .pj-link .arr::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: rotate(45deg); }
+.pj-body .pj-link[href="#"] { background: rgba(26,26,31,0.15); color: rgba(26,26,31,0.35); pointer-events: none; }
+.pj-body .pj-link[href="#"]::before { display: none; }
 .pj-thumbs { display: flex; gap: clamp(0.5rem, 0.69vw, 1rem); margin-top: clamp(1.5rem, 2.08vw, 3rem); overflow-x: auto; scrollbar-width: none; }
 .pj-thumbs::-webkit-scrollbar { display: none; }
 .pj-thumbs .th { flex-shrink: 0; width: clamp(140px, 15.28vw, 220px); height: clamp(90px, 9.72vw, 140px); background: #e8e7e2; border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: var(--fx); color: rgba(0,0,0,0.08); letter-spacing: 0.15em; text-transform: uppercase; transition: border-color 0.4s; }
@@ -204,8 +209,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .brand-feature .pj-meta span { color: #8a7a6a; }
 .brand-feature .pj-meta span::before { background: #9c6030; }
 .brand-feature .pj-desc { color: rgba(42,37,32,0.55); }
-.brand-feature .pj-link { color: #2a2520; }
-.brand-feature .pj-link:hover { color: #9c6030; }
+.brand-feature .pj-link { color: #fff; background: #2a2520; }
+.brand-feature .pj-link::before { background: #9c6030; }
+.brand-feature .pj-link:hover { color: #fff; }
 .brand-feature .pj-thumbs .th { background: #e2d6c2; border-color: rgba(0,0,0,0.06); color: rgba(42,37,32,0.12); }
 .brand-feature .pj-thumbs .th:hover { border-color: #9c6030; }
 .brand-hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: var(--py) var(--px) clamp(3rem, 4.17vw, 6rem); position: relative; }
