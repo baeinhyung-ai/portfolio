@@ -153,6 +153,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .pj-body .pj-link { display: inline-flex; align-items: center; gap: clamp(0.6rem, 0.83vw, 1.2rem); text-decoration: none; color: #fff; background: var(--white); font-family: var(--sans); font-size: var(--fs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: clamp(0.7rem, 0.97vw, 1.4rem) clamp(1.2rem, 1.67vw, 2.4rem); position: relative; overflow: hidden; transition: color 0.35s, gap 0.35s; }
 .pj-body .pj-link::before { content: ''; position: absolute; inset: 0; background: var(--blue); transform: translateX(-101%); transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0; }
 .pj-body .pj-link:hover::before { transform: translateX(0); }
+    .pj-body .pj-link .link-hover-text { position: absolute; right: clamp(1.2rem, 1.67vw, 2.4rem); font-size: var(--fx); letter-spacing: 0.15em; opacity: 0; transform: translateY(6px); transition: opacity 0.25s 0.1s, transform 0.25s 0.1s; z-index: 1; white-space: nowrap; }
+.pj-body .pj-link:hover .link-hover-text { opacity: 1; transform: translateY(0); }
 .pj-body .pj-link:hover { gap: clamp(1rem, 1.39vw, 2rem); }
 .pj-body .pj-link span, .pj-body .pj-link .arr { position: relative; z-index: 1; }
 .pj-body .pj-link .arr { width: clamp(18px, 1.94vw, 28px); height: 1px; background: currentColor; position: relative; transition: width 0.35s; z-index: 1; flex-shrink: 0; }
@@ -557,7 +559,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="pj-right">
         <p class="pj-desc">디자인 가이드라인이 부재했던 KTR의 전국 17개 기관 상담창구를 표준화하여 고객이 어디서든 일관된 브랜드 경험을 할 수 있도록 설계했습니다. 업무 효율성과 브랜드 경험을 동시에 개선하는 것을 목표로 임했습니다.</p>
-        <a href="./ktr-brand.html" class="pj-link">View Detail <span class="arr"></span></a>
+        <a href="./ktr-brand.html" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span>
         <div class="pj-thumbs">
           <div class="th">상담창구</div>
           <div class="th">가이드라인</div>
@@ -582,7 +584,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="pj-right">
         <p class="pj-desc">KTR 과천청사의 동해홀 리모델링. 노후된 가구와 비효율적 동선 문제를 방음과 조도를 고려한 설계로 해결하여, 청사 내부 다른 교육장의 표준 모델로 선정되었습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
       </div>
     </div>
   </div>
@@ -601,7 +603,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="pj-right">
         <p class="pj-desc">좁은 좌석 간격과 노후된 가구 환경을 개선해 글로벌 기업 수준의 근무환경을 구현. 멀티미디어 장비와 브랜드 이미지를 효과적으로 담아낸 공간으로 설계했습니다.</p>
-        <a href="./ktr-global.html" class="pj-link">View Detail <span class="arr"></span></a>
+        <a href="./ktr-global.html" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
       </div>
     </div>
   </div>
@@ -620,7 +622,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="pj-right">
         <p class="pj-desc">연면적 4,800평 규모의 조감도를 설계. 현대적 파사드와 KTR 브랜드 아이덴티티를 반영한 외관으로 첨단 바이오 거점 이미지를 구현하고, 시흥의 녹지와 어우러진 조경 계획을 반영했습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
       </div>
     </div>
   </div>
@@ -639,7 +641,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
       </div>
       <div class="pj-right">
         <p class="pj-desc">KTR 탄소중립화학규제지원본부 신축 프로젝트. 새롭게 신설되는 본부의 업무 환경을 처음부터 설계하여, 조직 특성에 맞는 효율적인 공간 구성과 브랜드 아이덴티티를 반영한 오피스를 구축했습니다.</p>
-        <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+        <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
       </div>
     </div>
   </div>
@@ -775,7 +777,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
         </div>
         <div class="pj-right">
           <p class="pj-desc">AI OCR 기술을 활용한 양방향 소통 교육 앱의 UI 디자인 및 브랜딩을 담당. User Journey Mapping, Wireframe, Prototype 디자인을 수행하여 AppStore와 Google Play에 성공적으로 런칭했습니다. 대구스타트업리더스포럼 IR 피칭을 위한 인터랙션 부스도 제작했습니다.</p>
-          <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+          <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
           <div class="pj-thumbs">
             <div class="th">UI 디자인</div>
             <div class="th">와이어프레임</div>
@@ -802,7 +804,7 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
         </div>
         <div class="pj-right">
           <p class="pj-desc">KTR의 브랜드 아이덴티티를 강화하기 위한 캐릭터 디자인 프로젝트. 조직의 전문성과 친근함을 동시에 전달하는 마스코트를 개발하여 사내외 커뮤니케이션에 활용했습니다.</p>
-          <a href="#" class="pj-link">View Detail <span class="arr"></span></a>
+          <a href="#" class="pj-link">View Detail <span class="link-hover-text">작업과정</span><span class="arr"></span></a>
           <div class="pj-thumbs">
             <div class="th">캐릭터 시안</div>
             <div class="th">응용 디자인</div>
