@@ -302,7 +302,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .tl .tl-t { font-family: var(--new-kr); font-size: clamp(0.75rem, 0.61vw, 0.88rem); font-weight: 600; margin-bottom: clamp(0.25rem, 0.35vw, 0.5rem); color: var(--white); }
 .tl .tl-role { font-family: var(--new-kr); font-size: var(--fx); font-weight: 400; color: var(--blue2); margin-bottom: clamp(0.25rem, 0.35vw, 0.5rem); }
 .tl .tl-d { font-family: var(--new-kr); font-size: clamp(0.65rem, 0.52vw, 0.75rem); font-weight: 350; color: var(--dim); line-height: 1.8; }
-.tl-achieve { display: flex; align-items: flex-start; gap: clamp(0.25rem, 0.35vw, 0.5rem); margin-top: clamp(0.35rem, 0.49vw, 0.7rem); padding: clamp(0.3rem, 0.38vw, 0.55rem) clamp(0.4rem, 0.52vw, 0.75rem); background: rgba(42,68,232,0.06); border-left: 2px solid var(--blue); font-family: var(--new-kr); font-size: var(--fx); font-weight: 450; color: var(--blue2); line-height: 1.6; border-radius: 0 6px 6px 0; }
+.tl-achieve { display: flex; align-items: flex-start; gap: clamp(0.25rem, 0.35vw, 0.5rem); margin-top: clamp(0.35rem, 0.49vw, 0.7rem); padding: clamp(0.3rem, 0.38vw, 0.55rem) clamp(0.4rem, 0.52vw, 0.75rem); background: rgba(42,68,232,0.06); border-left: 2px solid var(--blue); font-family: var(--new-kr); font-size: clamp(0.8rem,0.69vw,0.95rem); font-weight: 450; color: var(--blue2); line-height: 1.6; border-radius: 0 6px 6px 0; }
 .tl-achieve::before { content: '★'; flex-shrink: 0; font-size: clamp(0.45rem, 0.38vw, 0.55rem); color: var(--blue); margin-top: 1px; }
 .tl-tags { display: flex; flex-wrap: wrap; gap: clamp(0.2rem, 0.28vw, 0.4rem); margin-top: clamp(0.4rem, 0.56vw, 0.8rem); }
 .tl-tag { font-family: var(--mono); font-size: clamp(0.45rem, 0.36vw, 0.52rem); letter-spacing: 0.08em; padding: clamp(0.15rem, 0.21vw, 0.3rem) clamp(0.35rem, 0.49vw, 0.7rem); background: rgba(42,68,232,0.06); border: 1px solid rgba(42,68,232,0.12); color: var(--blue2); text-transform: uppercase; border-radius: 4px; }
@@ -337,16 +337,18 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .cta-item .cta-v a:hover { color: var(--blue); }
 
 /* EXPERIENCE TABLE INTERACTIONS */
-.exp-row { display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:pointer; position:relative; transition:background 0.3s, padding-left 0.3s; }
+.exp-row { display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(1rem,1.39vw,2rem) 0; border-bottom:1px solid rgba(0,0,0,0.06); align-items:start; cursor:default; position:relative; transition:background 0.3s, padding-left 0.3s; }
 .exp-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--blue); transform:scaleY(0); transition:transform 0.3s; }
 .exp-row:hover { background:rgba(255,255,255,0.7); padding-left:clamp(0.8rem,1.04vw,1.5rem); box-shadow:0 4px 20px rgba(0,0,0,0.05); }
 .exp-row:hover::before { transform:scaleY(1); }
 .exp-row:hover .exp-num { transform:scale(1.15); }
 .exp-num { transition:transform 0.3s; font-family:var(--new-sans); font-style:normal; font-weight:800; font-size:var(--fst); color:var(--blue); text-align:right; line-height:1; }
-.exp-detail { max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(0.25,1,0.5,1), padding 0.5s; padding:0; border-bottom:1px solid rgba(0,0,0,0.06); }
-.exp-detail.open { max-height:200px; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); }
-.exp-detail .tl-tag { opacity:0; transform:translateY(10px); transition:all 0.3s; }
-.exp-detail.open .tl-tag { opacity:1; transform:translateY(0); }    
+.exp-detail { max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(0.25,1,0.5,1), padding 0.5s; padding:0; border-bottom:1px solid rgba(0,0,0,0.06); display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); }
+.exp-detail.open { max-height:300px; padding:clamp(0.5rem,0.69vw,1rem) 0 clamp(1rem,1.39vw,2rem); }
+.exp-detail-inner { grid-column:2 / 4; display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(1rem,1.39vw,2rem); }
+.exp-detail .dash-item { opacity:0; transform:translateY(6px); transition:all 0.3s; font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim); line-height:1.9; }
+.exp-detail .dash-item::before { content:'— '; color:var(--blue2); }
+.exp-detail.open .dash-item { opacity:1; transform:translateY(0); }    
     
 /* FOOTER */
 footer { padding: clamp(1.2rem, 1.74vw, 2.5rem) var(--px); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); }
@@ -505,78 +507,78 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <!-- KTR -->
   <div class="exp-row rv" data-target="ktr-detail">
     <div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2023.05</div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 재직중</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white);">2023.05</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim);">— 재직중</div>
     </div>
     <div>
-      <div style="font-family:var(--new-kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">KTR 한국화학융합시험연구원</div>
-      <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">경영기획본부 동반성장팀</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.85rem,0.72vw,1rem); font-weight:600;">KTR 한국화학융합시험연구원</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">경영기획본부 동반성장팀</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">'2023 KTR TOP 12' 수상 · TF 정식 조직 승격</div>
     </div>
-    <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--white2);">공간디자인 · 시공감리<br>그래픽디자인 · 브랜딩</div>
+    <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white2);">공간디자인 · 시공감리<br>그래픽디자인 · 브랜딩</div>
     <div class="exp-num" data-count="15">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
   <div class="exp-detail" id="ktr-detail">
-    <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
-      <span class="tl-tag">심층상담소 123py</span>
-      <span class="tl-tag">탄소중립본부 228py</span>
-      <span class="tl-tag">글로벌본부 160py</span>
-      <span class="tl-tag">바이오연구소 4,800py</span>
-      <span class="tl-tag">교육공간 70py</span>
-      <span class="tl-tag">접수센터 17개 기관</span>
-      <span class="tl-tag">김포센터 72py</span>
-      <span class="tl-tag">화성센터 54py</span>
-      <span class="tl-tag">회의실 5개실</span>
-      <span class="tl-tag">스마트랩 46py</span>
-      <span class="tl-tag">상담 플랫폼 UI</span>
-      <span class="tl-tag">ESG 성과보고서</span>
-      <span class="tl-tag">인증마크 디자인</span>
-      <span class="tl-tag">56주년 홍보영상</span>
-      <span class="tl-tag">거제 휴양소 외벽</span>
+    <div class="exp-detail-inner">
+      <div class="dash-item">심층상담소 리모델링 · 123py</div>
+      <div class="dash-item">탄소중립화학규제지원본부 신축 · 228py</div>
+      <div class="dash-item">글로벌본부 업무공간 리모델링 · 160py</div>
+      <div class="dash-item">시흥 바이오특화연구소 조감도 · 4,800py</div>
+      <div class="dash-item">교육공간(동해홀) 리모델링 · 70py</div>
+      <div class="dash-item">KTR 접수센터 브랜드 표준화 · 전국 17개 기관</div>
+      <div class="dash-item">김포센터 리모델링 · 72py</div>
+      <div class="dash-item">화성센터 리모델링 · 54py</div>
+      <div class="dash-item">회의실 리모델링 · 5개실</div>
+      <div class="dash-item">스마트랩 공간 조성 · 46py</div>
+      <div class="dash-item">상담 플랫폼 UI 디자인</div>
+      <div class="dash-item">ESG 성과보고서 디자인</div>
+      <div class="dash-item">인증마크 디자인</div>
+      <div class="dash-item">창립 56주년 홍보영상 제작</div>
+      <div class="dash-item">거제 휴양소 외벽 디자인</div>
     </div>
   </div>
 
   <!-- 빨간풍선 -->
   <div class="exp-row rv rv-d1" data-target="drama-detail">
     <div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2022.07</div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 2023.02</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white);">2022.07</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim);">— 2023.02</div>
     </div>
     <div>
-      <div style="font-family:var(--new-kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">TV CHOSUN '빨간풍선'</div>
-      <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">미술팀 · 팀장</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.85rem,0.72vw,1rem); font-weight:600;">TV CHOSUN '빨간풍선'</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">미술팀 · 팀장</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">최고 시청률 11.6% · Netflix TOP 10</div>
     </div>
-    <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--white2);">세트디자인 · 시공감리<br>아트디렉팅</div>
+    <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white2);">세트디자인 · 시공감리<br>아트디렉팅</div>
     <div class="exp-num" data-count="4">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
   <div class="exp-detail" id="drama-detail">
-    <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
-      <span class="tl-tag">22개 세트 설계 1,000py</span>
-      <span class="tl-tag">프리프로덕션 · 무드보드</span>
-      <span class="tl-tag">로케이션 헌팅</span>
-      <span class="tl-tag">특수가구 설계</span>
+    <div class="exp-detail-inner">
+      <div class="dash-item">22개 세트 설계 및 시공 · 1,000py</div>
+      <div class="dash-item">프리프로덕션 · 무드보드 제작</div>
+      <div class="dash-item">로케이션 헌팅</div>
+      <div class="dash-item">특수가구 설계 및 제작</div>
     </div>
   </div>
 
   <!-- 해피에듀테크 -->
   <div class="exp-row rv rv-d2" data-target="edu-detail">
     <div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2020.10</div>
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--dim);">— 2021.10</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white);">2020.10</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim);">— 2021.10</div>
     </div>
     <div>
-      <div style="font-family:var(--new-kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">㈜해피에듀테크</div>
-      <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">디자인팀 · 선임연구원</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.85rem,0.72vw,1rem); font-weight:600;">㈜해피에듀테크</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--dim); margin-top:clamp(0.15rem,0.21vw,0.3rem);">디자인팀 · 선임연구원</div>
       <div class="tl-achieve" style="margin-top:clamp(0.35rem,0.49vw,0.7rem);">AppStore · Google Play 런칭</div>
     </div>
-    <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--white2);">UI디자인 · 브랜딩<br>디자인 가이드라인</div>
+    <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white2);">UI디자인 · 브랜딩<br>디자인 가이드라인</div>
     <div class="exp-num" data-count="2">0<span style="font-family:var(--mono); font-size:var(--fx); color:var(--dim); font-style:normal;">건</span></div>
   </div>
   <div class="exp-detail" id="edu-detail">
-    <div style="display:flex; flex-wrap:wrap; gap:clamp(0.3rem,0.42vw,0.5rem);">
-      <span class="tl-tag">Math TWO 앱 UI</span>
-      <span class="tl-tag">스타트업포럼 부스</span>
+    <div class="exp-detail-inner">
+      <div class="dash-item">Math TWO 수학 학습 앱 UI 디자인</div>
+      <div class="dash-item">스타트업포럼 부스 디자인</div>
     </div>
   </div>
 
@@ -584,15 +586,15 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
   <div style="margin-top:clamp(2rem,2.78vw,4rem);">
     <div style="font-family:var(--new-sans);  font-weight:400; font-size:clamp(1.2rem,1.11vw,1.6rem); margin-bottom:clamp(1rem,1.39vw,2rem); padding-bottom:clamp(0.5rem,0.69vw,1rem); border-bottom:1px solid rgba(42,68,232,0.25); display:inline-block;">Education</div>
     <div class="rv" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(0.8rem,1.04vw,1.5rem) 0; border-bottom:1px solid rgba(0,0,0,0.06);">
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2012 — 2019</div>
-      <div style="font-family:var(--new-kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">홍익대학교</div>
-      <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--white2);">디자인영상학부 졸업</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white);">2012 — 2019</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.85rem,0.72vw,1rem); font-weight:600;">홍익대학교</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white2);">디자인영상학부 졸업</div>
       <div></div>
     </div>
     <div class="rv rv-d1" style="display:grid; grid-template-columns:1fr 2fr 1.5fr 0.5fr; gap:clamp(1rem,1.39vw,2rem); padding:clamp(0.8rem,1.04vw,1.5rem) 0;">
-      <div style="font-family:var(--mono); font-size:var(--fx); color:var(--white);">2008 — 2011</div>
-      <div style="font-family:var(--new-kr); font-size:clamp(0.75rem,0.61vw,0.88rem); font-weight:600;">대구정화여자고등학교</div>
-      <div style="font-family:var(--new-kr); font-size:var(--fx); color:var(--white2);">졸업</div>
+      <div style="font-family:var(--mono); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white);">2008 — 2011</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.85rem,0.72vw,1rem); font-weight:600;">대구정화여자고등학교</div>
+      <div style="font-family:var(--new-kr); font-size:clamp(0.8rem,0.69vw,0.95rem); color:var(--white2);">졸업</div>
       <div></div>
     </div>
   </div>
@@ -1274,18 +1276,24 @@ const skillObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.exp-col').forEach(col => {
   if (col.querySelector('.sk-list')) skillObs.observe(col);
 });
-  // Experience row click → toggle detail
+  // Experience row hover → show detail
 document.querySelectorAll('.exp-row').forEach(row => {
-  row.addEventListener('click', () => {
-    const targetId = row.getAttribute('data-target');
-    const detail = document.getElementById(targetId);
-    if (detail) {
-      detail.classList.toggle('open');
-      // stagger tags
-      detail.querySelectorAll('.tl-tag').forEach((tag, i) => {
-        tag.style.transitionDelay = detail.classList.contains('open') ? (i * 0.05) + 's' : '0s';
-      });
-    }
+  const targetId = row.getAttribute('data-target');
+  const detail = document.getElementById(targetId);
+  if (!detail) return;
+
+  row.addEventListener('mouseenter', () => {
+    detail.classList.add('open');
+    detail.querySelectorAll('.dash-item').forEach((item, i) => {
+      item.style.transitionDelay = (i * 0.04) + 's';
+    });
+  });
+
+  row.addEventListener('mouseleave', () => {
+    detail.classList.remove('open');
+    detail.querySelectorAll('.dash-item').forEach(item => {
+      item.style.transitionDelay = '0s';
+    });
   });
 });
 
@@ -1336,24 +1344,15 @@ if (galTrack) {
     return colW + gap;
   }
 
-  function getMaxCol() {
-    const colW = getColWidth();
-    const wrapW = galWrap ? galWrap.offsetWidth : window.innerWidth;
-    const visibleCols = Math.floor(wrapW / colW);
-    return Math.max(0, totalCols - visibleCols);
-  }
-
   function moveTo(idx) {
-    current = Math.max(0, Math.min(idx, getMaxCol()));
+    current = Math.max(0, Math.min(idx, totalCols - 1));
     galTrack.style.transform = `translateX(-${current * getColWidth()}px)`;
     if (galCurEl) galCurEl.textContent = current + 1;
     // 왼쪽 화살표 토글
     const leftArrow = document.getElementById('galPrev');
     if (leftArrow) leftArrow.classList.toggle('visible', current > 0);
     if (galWrap) galWrap.classList.toggle('has-prev', current > 0);
-    // 오른쪽 화살표: 더 이상 이동 불가하면 숨김
-    if (galNext) galNext.style.opacity = current >= getMaxCol() ? '0' : '';
-    if (galNext) galNext.style.pointerEvents = current >= getMaxCol() ? 'none' : '';
+    if (galWrap) galWrap.classList.toggle('has-prev', current > 0);
   }
 
   galNext?.addEventListener('click', () => moveTo(current + 1));
@@ -1379,7 +1378,7 @@ if (galTrack) {
       // 가장 가까운 컬럼에 스냅
       const colW = getColWidth();
       current = Math.round(currentX / colW);
-      current = Math.max(0, Math.min(current, getMaxCol()));
+      current = Math.max(0, Math.min(current, totalCols - 1));
       currentX = current * colW;
       galTrack.style.transition = 'transform 0.4s cubic-bezier(0.25,1,0.5,1)';
       galTrack.style.transform = `translateX(-${currentX}px)`;
@@ -1388,7 +1387,7 @@ if (galTrack) {
       return;
     }
 
-    const maxX = getMaxCol() * getColWidth();
+    const maxX = (totalCols - 1) * getColWidth();
     currentX = Math.max(0, Math.min(currentX + scrollVelocity, maxX));
     galTrack.style.transition = 'none';
     galTrack.style.transform = `translateX(-${currentX}px)`;
