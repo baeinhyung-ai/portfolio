@@ -1336,15 +1336,24 @@ if (galTrack) {
     return colW + gap;
   }
 
+  function getMaxCol() {
+    const colW = getColWidth();
+    const wrapW = galWrap ? galWrap.offsetWidth : window.innerWidth;
+    const visibleCols = Math.floor(wrapW / colW);
+    return Math.max(0, totalCols - visibleCols);
+  }
+
   function moveTo(idx) {
-    current = Math.max(0, Math.min(idx, totalCols - 1));
+    current = Math.max(0, Math.min(idx, getMaxCol()));
     galTrack.style.transform = `translateX(-${current * getColWidth()}px)`;
     if (galCurEl) galCurEl.textContent = current + 1;
     // 왼쪽 화살표 토글
     const leftArrow = document.getElementById('galPrev');
     if (leftArrow) leftArrow.classList.toggle('visible', current > 0);
     if (galWrap) galWrap.classList.toggle('has-prev', current > 0);
-    if (galWrap) galWrap.classList.toggle('has-prev', current > 0);
+    // 오른쪽 화살표: 더 이상 이동 불가하면 숨김
+    if (galNext) galNext.style.opacity = current >= getMaxCol() ? '0' : '';
+    if (galNext) galNext.style.pointerEvents = current >= getMaxCol() ? 'none' : '';
   }
 
   galNext?.addEventListener('click', () => moveTo(current + 1));
@@ -1370,7 +1379,7 @@ if (galTrack) {
       // 가장 가까운 컬럼에 스냅
       const colW = getColWidth();
       current = Math.round(currentX / colW);
-      current = Math.max(0, Math.min(current, totalCols - 1));
+      current = Math.max(0, Math.min(current, getMaxCol()));
       currentX = current * colW;
       galTrack.style.transition = 'transform 0.4s cubic-bezier(0.25,1,0.5,1)';
       galTrack.style.transform = `translateX(-${currentX}px)`;
@@ -1379,7 +1388,7 @@ if (galTrack) {
       return;
     }
 
-    const maxX = (totalCols - 1) * getColWidth();
+    const maxX = getMaxCol() * getColWidth();
     currentX = Math.max(0, Math.min(currentX + scrollVelocity, maxX));
     galTrack.style.transition = 'none';
     galTrack.style.transform = `translateX(-${currentX}px)`;
