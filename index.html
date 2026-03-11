@@ -103,10 +103,17 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .hero-letter-title .letter-break { display: block; height: 0; }
 .hero-letter-sub { font-family: var(--kr); font-size: var(--fb); font-weight: 500; line-height: 1.7; color: rgba(255,255,255,0.85); max-width: 48vw; text-shadow: 0 2px 20px rgba(0,0,0,0.5); text-align: center; }
 .sec { position: relative; }
+#works { overflow: visible; }
+#works .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; opacity: 0; transition: opacity 0.8s ease; }
+#works .orb-1 { width: clamp(700px, 80vw, 1300px); height: clamp(700px, 80vw, 1300px); left: -35%; top: 50%; transform: translateY(-50%); background: radial-gradient(circle, rgba(100,180,255,0.18) 0%, rgba(120,200,255,0.08) 50%, transparent 70%); filter: blur(80px); }
+#works .orb-2 { width: clamp(300px, 40vw, 700px); height: clamp(300px, 40vw, 700px); right: -20%; top: 50%; transform: translateY(-20%); background: radial-gradient(circle, rgba(60,200,170,0.15) 0%, rgba(80,220,190,0.07) 50%, transparent 70%); filter: blur(70px); }
+#works.orb-visible .orb { opacity: 1; }
+#works > * { position: relative; z-index: 1; }
+#works .bg-num { position: absolute; z-index: 2; }
 .pad { padding: var(--py) var(--px); }
 .pad-sm { padding: var(--py-s) var(--px); }
 .lbl { font-family: var(--mono); font-size: var(--fm); letter-spacing: 0.45em; text-transform: uppercase; color: var(--blue2); margin-bottom: clamp(0.8rem, 1.04vw, 1.5rem); }
-.bg-num { font-family: var(--new-sans); font-size: var(--fN); color: rgba(0,0,0,0.03); position: absolute; top: clamp(3rem, 4.17vw, 6rem); right: var(--px); line-height: 1; pointer-events: none;  }
+.bg-num { font-family: var(--new-sans); font-size: var(--fN); color: rgba(0,0,0,0.03); position: absolute; top: clamp(3rem, 4.17vw, 6rem); right: var(--px); line-height: 1; pointer-events: none; z-index: 2; }
 .rv { opacity: 0; transform: translateY(clamp(30px, 4.17vw, 60px)); transition: all 1s cubic-bezier(0.25,1,0.5,1); }
 .rv.v { opacity: 1; transform: translateY(0); }
 .rv-d1 { transition-delay: 0.15s; }
@@ -127,17 +134,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; padding: clamp(1.2rem, 1.39vw,
 .st .st-d { font-family: var(--mono); font-size: var(--fx); color: var(--dim); letter-spacing: 0.12em; margin-top: clamp(0.3rem, 0.42vw, 0.6rem); }
 
 /* MARQUEE */
-.mq { background: #0a0a0f; padding: clamp(1.5rem, 2.08vw, 3rem) 0; overflow: hidden; }
-.mq-track { display: flex; width: max-content; animation: mqScroll 30s linear infinite; }
-.mq-track.mq-reverse { animation: mqScrollRev 30s linear infinite; }
+.mq { background: var(--bg); padding: clamp(2rem, 2.78vw, 4rem) 0; overflow: hidden; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: clamp(4rem, 8.33vw, 12rem); position: relative; z-index: 10; }
+.mq-track { display: flex; width: max-content; animation: mqScroll 35s linear infinite; gap: clamp(0.8rem, 1vw, 1.4rem); margin-bottom: clamp(0.8rem, 1vw, 1.4rem); }
+.mq-track.mq-reverse { animation: mqScrollRev 28s linear infinite; margin-bottom: 0; }
 @keyframes mqScroll { to { transform: translateX(-50%); } }
 @keyframes mqScrollRev { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
-.mq-track span { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 2.5vw, 3.5rem); color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; padding: 0; }
-.mq-reverse span { font-size: clamp(1rem, 1.5vw, 2rem); }
-.mq-track span.on { color: rgba(255,255,255,0.9); }
-.mq-track span.or { color: #FF5C00; }
-.mq-track span.bl { color: rgba(255,255,255,0.4); }
-.mq-track .dot { font-size: 0.5em; color: #FF5C00; align-self: center; padding: 0 clamp(0.5rem, 1vw, 1.5rem); }
+.mq-track span { font-family: var(--new-kr); font-weight: 600; font-size: clamp(1.1rem, 1.5vw, 2rem); color: var(--white); text-transform: none; letter-spacing: 0.01em; white-space: nowrap; padding: clamp(0.7rem, 0.9vw, 1.3rem) clamp(1.6rem, 2.2vw, 3.2rem); border: 1.5px solid rgba(0,0,0,0.2); border-radius: 999px; transition: border-color 0.3s, color 0.3s; cursor: default; }
+.mq-track span:hover { border-color: var(--blue); color: var(--blue); }
+.mq-track span.on { border-color: var(--blue2); color: var(--blue2); }
+.mq-track .dot { display: none; }
 
 /* PROJECTS */
 .works-header { margin-bottom: clamp(4rem, 6.94vw, 10rem); }
@@ -603,41 +608,55 @@ footer span { font-family: var(--mono); font-size: var(--fx); color: var(--dim);
 <!-- MARQUEE -->
 <div class="mq">
   <div class="mq-track">
-    <span class="on">Interior</span><span class="dot">✦</span>
-    <span>Set Design</span><span class="dot">✦</span>
-    <span class="or">Remodeling</span><span class="dot">✦</span>
-    <span>Architecture</span><span class="dot">✦</span>
-    <span class="on">Space Design</span><span class="dot">✦</span>
-    <span>Branding</span><span class="dot">✦</span>
-    <span class="or">Graphic Design</span><span class="dot">✦</span>
-    <span class="on">Interior</span><span class="dot">✦</span>
-    <span>Set Design</span><span class="dot">✦</span>
-    <span class="or">Remodeling</span><span class="dot">✦</span>
-    <span>Architecture</span><span class="dot">✦</span>
-    <span class="on">Space Design</span><span class="dot">✦</span>
-    <span>Branding</span><span class="dot">✦</span>
-    <span class="or">Graphic Design</span><span class="dot">✦</span>
+    <span class="on">Space Design</span>
+    <span>Interior</span>
+    <span>Remodeling</span>
+    <span class="on">Set Design</span>
+    <span>Art Direction</span>
+    <span>Branding</span>
+    <span class="on">Graphic Design</span>
+    <span>Signage</span>
+    <span>UI Design</span>
+    <span>Construction Management</span>
+    <span class="on">Space Design</span>
+    <span>Interior</span>
+    <span>Remodeling</span>
+    <span class="on">Set Design</span>
+    <span>Art Direction</span>
+    <span>Branding</span>
+    <span class="on">Graphic Design</span>
+    <span>Signage</span>
+    <span>UI Design</span>
+    <span>Construction Management</span>
   </div>
   <div class="mq-track mq-reverse">
-    <span>Interior</span><span class="dot">✦</span>
-    <span class="or">Set Design</span><span class="dot">✦</span>
-    <span>Remodeling</span><span class="dot">✦</span>
-    <span class="on">Architecture</span><span class="dot">✦</span>
-    <span>Space Design</span><span class="dot">✦</span>
-    <span class="or">Branding</span><span class="dot">✦</span>
-    <span>Graphic Design</span><span class="dot">✦</span>
-    <span>Interior</span><span class="dot">✦</span>
-    <span class="or">Set Design</span><span class="dot">✦</span>
-    <span>Remodeling</span><span class="dot">✦</span>
-    <span class="on">Architecture</span><span class="dot">✦</span>
-    <span>Space Design</span><span class="dot">✦</span>
-    <span class="or">Branding</span><span class="dot">✦</span>
-    <span>Graphic Design</span><span class="dot">✦</span>
+    <span>Rhino 3D</span>
+    <span class="on">AutoCAD</span>
+    <span>SketchUp</span>
+    <span>Figma</span>
+    <span class="on">Illustrator</span>
+    <span>Photoshop</span>
+    <span>Premiere Pro</span>
+    <span class="on">3ds Max</span>
+    <span>V-Ray</span>
+    <span>InDesign</span>
+    <span>Rhino 3D</span>
+    <span class="on">AutoCAD</span>
+    <span>SketchUp</span>
+    <span>Figma</span>
+    <span class="on">Illustrator</span>
+    <span>Photoshop</span>
+    <span>Premiere Pro</span>
+    <span class="on">3ds Max</span>
+    <span>V-Ray</span>
+    <span>InDesign</span>
   </div>
 </div>
 
   <!-- Works -->
 <section class="sec pad" id="works">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
   <div class="bg-num">03</div>
   <div class="works-header rv">
     <div class="lbl" style="font-family:'Bebas Neue'; font-size:var(--fb); font-weight:400; letter-spacing:0.25em;">Selected Works</div>
@@ -1478,6 +1497,36 @@ const statObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.st-n[data-count]').forEach(el => statObs.observe(el));
+
+// Works 섹션 orb — 마퀴 절반 올라가면 fade in, 갤러리 트랙 보이면 fade out
+const worksSection = document.getElementById('works');
+const mqEl = document.querySelector('.mq');
+const galTrackEl = document.getElementById('galTrack');
+
+if (worksSection) worksSection.classList.remove('orb-visible');
+
+const worksHeaderEl = worksSection ? worksSection.querySelector('.works-header') : null;
+const galTitleEl = document.querySelector('.gallery-title');
+
+window.addEventListener('scroll', () => {
+  if (!worksSection) return;
+
+  const headerRect = worksHeaderEl ? worksHeaderEl.getBoundingClientRect() : null;
+  const galRect = galTitleEl ? galTitleEl.getBoundingClientRect() : null;
+
+  // fade out 우선 — gallery-title이 화면에 들어오면
+  if (galRect && galRect.top <= window.innerHeight) {
+    worksSection.classList.remove('orb-visible');
+    return;
+  }
+
+  // fade in — works-header가 화면 하단에 걸리는 순간부터
+  if (headerRect && headerRect.top <= window.innerHeight) {
+    worksSection.classList.add('orb-visible');
+  } else {
+    worksSection.classList.remove('orb-visible');
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
